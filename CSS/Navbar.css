@@ -12,7 +12,7 @@ nav * {
     transition: all 0.25s ease-in-out;
 }
 
-nav.small {
+nav>#small {
     position: fixed;
     bottom: 0;
     display: flex;
@@ -25,7 +25,7 @@ nav.small {
     /* allows for no action button layout*/
 }
 
-nav.small>.tab-bar {
+nav>#small>.tab-bar {
     display: flex;
     align-items: center;
     height: 64px;
@@ -42,7 +42,7 @@ nav.small>.tab-bar {
     /* update, 112 instead to match apple's 106 (weird number, so i rounded to 64+48) */
 }
 
-nav.small>.tab-bar>.tab-item {
+nav>#small>.tab-bar>.tab-item {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -54,25 +54,25 @@ nav.small>.tab-bar>.tab-item {
     min-width: 0;
 }
 
-nav.small>.tab-bar>.tab-item>p {
+nav>#small>.tab-bar>.tab-item>p {
     font-size: 10px;
     white-space: nowrap;
 }
 
-nav.small>.tab-bar>.tab-item#selected {
+nav>#small>.tab-bar>.tab-item#selected {
     color: #ff0080;
     position: relative;
 }
 
-nav.small>.tab-bar>.tab-item#selected>svg {
+nav>#small>.tab-bar>.tab-item#selected>svg {
     color: #ff0080;
 }
 
-nav.small>.tab-bar>.tab-item#selected>p {
+nav>#small>.tab-bar>.tab-item#selected>p {
     color: #ff0080;
 }
 
-nav.small>.tab-bar>.tab-item#selected::before {
+nav>#small>.tab-bar>.tab-item#selected::before {
     content: "";
     display: block;
     position: absolute;
@@ -86,7 +86,7 @@ nav.small>.tab-bar>.tab-item#selected::before {
     z-index: 2;
 }
 
-nav.small>.accessory-bar {
+nav>#small>.accessory-bar {
     order: -1;
     width: calc(100vw - 64px);
     height: 32px;
@@ -98,7 +98,7 @@ nav.small>.accessory-bar {
 }
 
 
-nav.small>.action-btn {
+nav>#small>.action-btn {
     width: 64px;
     height: 64px;
     display: flex;
@@ -108,42 +108,42 @@ nav.small>.action-btn {
     margin-left: auto;
 }
 
-nav.small.compact {
+nav>#small.compact {
     gap: 8px;
     justify-content: flex-start;
 }
 
-nav.small.compact>.tab-bar {
+nav>#small.compact>.tab-bar {
     height: 48px;
     width: 48px;
     padding: 0;
     flex: 0 0 auto;
 }
 
-nav.small.compact>.tab-bar>.tab-item>p {
+nav>#small.compact>.tab-bar>.tab-item>p {
     display: none;
 }
 
-nav.small.compact>.tab-bar>.tab-item:not(#selected) {
+nav>#small.compact>.tab-bar>.tab-item:not(#selected) {
     display: none;
 }
 
-nav.small.compact>.tab-bar>.tab-item#selected::before {
+nav>#small.compact>.tab-bar>.tab-item#selected::before {
     display: none;
 }
 
-nav.small.compact>.accessory-bar {
+nav>#small.compact>.accessory-bar {
     order: 0;
     width: auto;
     flex: 1 1 0%;
 }
 
-nav.small.compact>.action-btn {
+nav>#small.compact>.action-btn {
     height: 48px;
     width: 48px;
 }
 
-nav.large {
+nav>#large {
     display: none;
     position: fixed;
     top: 32px;
@@ -155,26 +155,26 @@ nav.large {
     z-index: 2;
 }
 
-nav.large>.tab-bar {
+nav>#large>.tab-bar {
     display: flex;
     align-items: center;
     padding: 4px;
     gap: 8px;
 }
 
-nav.large>.tab-bar>.tab-item {
+nav>#large>.tab-bar>.tab-item {
     padding: 8px 12px;
 }
 
-nav.large>.tab-bar>.tab-item#selected {
+nav>#large>.tab-bar>.tab-item#selected {
     position: relative;
 }
 
-nav.large>.tab-bar>.tab-item#selected>p {
+nav>#large>.tab-bar>.tab-item#selected>p {
     color: #ff0080;
 }
 
-nav.large>.tab-bar>.tab-item#selected::before {
+nav>#large>.tab-bar>.tab-item#selected::before {
     content: "";
     display: block;
     position: absolute;
@@ -190,32 +190,32 @@ nav.large>.tab-bar>.tab-item#selected::before {
     pointer-events: none;
 }
 
-nav.large>.tab-bar>svg {
+nav>#large>.tab-bar>svg {
     width: 24px;
     height: 24px;
 }
 
-nav.large>.tab-bar:not(:has(> svg:not(.removed) ~ svg:not(.removed)))>svg:not(.removed):first-child {
+nav>#large>.tab-bar:not(:has(> svg:not(.removed) ~ svg:not(.removed)))>svg:not(.removed):first-child {
     margin-left: 12px;
     margin-right: 4px;
 }
 
-nav.large>.tab-bar:not(:has(> svg:not(.removed) ~ svg:not(.removed)))>svg:not(.removed):last-child {
+nav>#large>.tab-bar:not(:has(> svg:not(.removed) ~ svg:not(.removed)))>svg:not(.removed):last-child {
     margin-left: 4px;
     margin-right: 12px;
 }
 
-nav.large>.tab-bar:has(> svg:first-child:not(.removed):not(:only-child)):has(> svg:last-child:not(.removed):not(:only-child))>svg:first-child {
+nav>#large>.tab-bar:has(> svg:first-child:not(.removed):not(:only-child)):has(> svg:last-child:not(.removed):not(:only-child))>svg:first-child {
     margin-left: 20px;
     margin-right: 16px;
 }
 
-nav.large>.tab-bar:has(> svg:first-child:not(.removed):not(:only-child)):has(> svg:last-child:not(.removed):not(:only-child))>svg:last-child {
+nav>#large>.tab-bar:has(> svg:first-child:not(.removed):not(:only-child)):has(> svg:last-child:not(.removed):not(:only-child))>svg:last-child {
     margin-left: 16px;
     margin-right: 20px;
 }
 
-nav.large>.tab-bar>.tab-item:hover {
+nav>#large>.tab-bar>.tab-item:hover {
     background-color: rgba(0, 0, 0, 0.05);
     border-radius: 28px;
     cursor: pointer;
@@ -226,25 +226,25 @@ nav.large>.tab-bar>.tab-item:hover {
         color: #ffffff;
     }
 
-    nav.small>.tab-bar>.tab-item#selected::before {
+    nav>#small>.tab-bar>.tab-item#selected::before {
         background-color: rgba(255, 255, 255, 0.1);
     }
 
-    nav.large>.tab-bar>.tab-item#selected::before {
+    nav>#large>.tab-bar>.tab-item#selected::before {
         background-color: rgba(255, 255, 255, 0.1);
     }
 
-    nav.large>.tab-bar>.tab-item:hover {
+    nav>#large>.tab-bar>.tab-item:hover {
         background-color: rgba(255, 255, 255, 0.05);
     }
 }
 
 @media (min-width: 700px) {
-    nav.small {
+    nav>#small {
         display: none;
     }
 
-    nav.large {
+    nav>#large {
         display: flex;
     }
 }
