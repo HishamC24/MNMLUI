@@ -1,4 +1,6 @@
 @import url('./Navbar.css');
+@import url('./Card.css');
+@import url('./Header.css');
 
 * {
     margin: 0;
