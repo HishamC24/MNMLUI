@@ -1,0 +1,11 @@
+.card {
+    margin: 16px;
+    border-radius: 48px;
+    background-color: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+    .card {
+        background-color: #1A1A1A;
+    }
+}
