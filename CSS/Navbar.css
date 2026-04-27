@@ -1,3 +1,7 @@
+body {
+    margin-bottom: 128px;
+}
+
 nav svg {
     width: 32px;
     height: 32px;
@@ -240,6 +244,10 @@ nav>#large>.tab-bar>.tab-item:hover {
 }
 
 @media (min-width: 700px) {
+    body {
+        margin-bottom: 16px;
+    }
+
     nav>#small {
         display: none;
     }

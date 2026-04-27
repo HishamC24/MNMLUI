@@ -10,7 +10,6 @@
 
 body {
     background-color: #F2F2F2;
-    margin-bottom: 128px;
     padding-top: env(safe-area-inset-top);
 }
 
@@ -44,11 +43,6 @@ body {
     }
 }
 
-@media (min-width: 700px) {
-    body {
-        margin-bottom: 16px;
-    }
-}
 
 .removed {
     display: none !important;
