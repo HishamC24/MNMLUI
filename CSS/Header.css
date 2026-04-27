@@ -1,0 +1,16 @@
+/* subject to change, since adding a subtext would increase the height of this area, and that shouldnt be the case. */
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 128px 0px;
+}
+
+header>h1 {
+    display: flex;
+    justify-content: center;
+    font-size: 48px;
+}
+
+/* ill remove one justify content, just gotta see which */
