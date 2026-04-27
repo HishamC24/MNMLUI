@@ -1,80 +1,52 @@
 console.log("MNMLUI Navbar is working!");
 
-let lastScrollY = window.scrollY || window.pageYOffset, compactNavTimeout = null;
+const smallNav = document.querySelector('#small');
+const allTabs = document.querySelectorAll('#small .tab-bar .tab-item, #large .tab-bar .tab-item');
+
+let lastScrollY = window.scrollY || window.pageYOffset;
 
 function getDocHeight() {
-    const d = document, b = d.body, e = d.documentElement;
+    const b = document.body, e = document.documentElement;
     return Math.max(b.scrollHeight, e.scrollHeight, b.offsetHeight, e.offsetHeight, b.clientHeight, e.clientHeight);
 }
 
 function handleCompactNav() {
-    const nav = document.querySelector('nav > #small');
-    if (!nav) return;
+    if (!smallNav) return;
 
-    const y = window.scrollY || window.pageYOffset,
-        h = window.innerHeight || document.documentElement.clientHeight,
-        docH = getDocHeight();
+    const y = window.scrollY || window.pageYOffset;
+    const h = window.innerHeight || document.documentElement.clientHeight;
 
-    const MAX_SCROLL_Y = Math.max(0, docH - h);
-    const atBottom = (y >= (MAX_SCROLL_Y - 8));
+    const MAX_SCROLL_Y = Math.max(0, getDocHeight() - h);
+    const atBottom = (y >= MAX_SCROLL_Y - 8);
 
-    const clearCompactTimeout = () => {
-        if (compactNavTimeout) {
-            clearTimeout(compactNavTimeout);
-            compactNavTimeout = null;
-        }
-    };
-
-    if (atBottom) {
-        nav.classList.remove('compact');
-        clearCompactTimeout();
-    } else if (y < lastScrollY - 4) {
-        nav.classList.remove('compact');
-        clearCompactTimeout();
+    if (atBottom || y < lastScrollY - 4) {
+        smallNav.classList.remove('compact');
     } else if (y > lastScrollY + 4) {
-        clearCompactTimeout();
-        nav.classList.add('compact');
+        smallNav.classList.add('compact');
     }
+
     lastScrollY = y;
 }
 
 window.addEventListener('scroll', handleCompactNav, { passive: true });
-window.addEventListener('resize', handleCompactNav);
+window.addEventListener('resize', handleCompactNav, { passive: true });
 window.addEventListener('load', handleCompactNav);
-
-function getTabItems() {
-    const smallTabs = document.querySelectorAll('nav > #small .tab-bar .tab-item');
-    const largeTabs = document.querySelectorAll('nav > #large .tab-bar .tab-item');
-    return { smallTabs, largeTabs };
-}
-
-function getTabLabel(tabItem) {
-    const p = tabItem.querySelector('p');
-    return p ? p.innerText.trim() : '';
-}
-
-const { smallTabs, largeTabs } = getTabItems();
-const allTabs = [...smallTabs, ...largeTabs];
-const nav = document.querySelector('nav > #small');
 
 allTabs.forEach(item => {
     item.addEventListener('click', function () {
-        const label = getTabLabel(this);
+        const clickedLabel = this.querySelector('p')?.innerText.trim();
 
         allTabs.forEach(tab => {
             if (tab.id === 'selected') {
                 tab.removeAttribute('id');
             }
-        });
 
-        allTabs.forEach(tab => {
-            if (getTabLabel(tab) === label) {
+            const tabLabel = tab.querySelector('p')?.innerText.trim();
+            if (tabLabel === clickedLabel) {
                 tab.id = 'selected';
             }
         });
 
-        if (nav && nav.classList.contains('compact')) {
-            nav.classList.remove('compact');
-        }
+        smallNav?.classList.remove('compact');
     });
 });
