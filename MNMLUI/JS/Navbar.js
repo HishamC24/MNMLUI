@@ -1,3 +1,5 @@
+console.log("MNMLUI Navbar is working!");
+
 let lastScrollY = window.scrollY || window.pageYOffset, compactNavTimeout = null;
 
 function getDocHeight() {
