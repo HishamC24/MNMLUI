@@ -8,7 +8,7 @@ function getDocHeight() {
 }
 
 function handleCompactNav() {
-    const nav = document.querySelector('nav.small');
+    const nav = document.querySelector('nav > #small');
     if (!nav) return;
 
     const y = window.scrollY || window.pageYOffset,
@@ -43,8 +43,8 @@ window.addEventListener('resize', handleCompactNav);
 window.addEventListener('load', handleCompactNav);
 
 function getTabItems() {
-    const smallTabs = document.querySelectorAll('nav.small .tab-bar .tab-item');
-    const largeTabs = document.querySelectorAll('nav.large .tab-bar .tab-item');
+    const smallTabs = document.querySelectorAll('nav > #small .tab-bar .tab-item');
+    const largeTabs = document.querySelectorAll('nav > #large .tab-bar .tab-item');
     return { smallTabs, largeTabs };
 }
 
@@ -55,7 +55,7 @@ function getTabLabel(tabItem) {
 
 const { smallTabs, largeTabs } = getTabItems();
 const allTabs = [...smallTabs, ...largeTabs];
-const nav = document.querySelector('nav.small');
+const nav = document.querySelector('nav > #small');
 
 allTabs.forEach(item => {
     item.addEventListener('click', function () {
