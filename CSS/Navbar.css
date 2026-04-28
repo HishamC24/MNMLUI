@@ -238,7 +238,8 @@ nav>#large {
 }
 
 body:has(nav > #large:not([style*="display: none"])) {
-    margin-left: calc(256px + 48px);
+    margin-left: calc(256px + 64px);
+    /* MARGINZ HORIZONTALLY DO NOT OVERLAP, BUT VERTICALLY THEY DO */
 }
 
 nav>#large>.tab-bar {

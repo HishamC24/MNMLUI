@@ -13,3 +13,9 @@
         background-color: #1A1A1A;
     }
 }
+
+@media (min-width: 700px) {
+    body:has(nav > #large:not([style*="display: none"])) .card {
+        margin: 16px 16px 16px 0px;
+    }
+}
