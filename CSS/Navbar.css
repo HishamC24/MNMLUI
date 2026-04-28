@@ -147,7 +147,7 @@ nav>#small.compact>.action-btn {
     width: 48px;
 }
 
-nav>#large {
+nav>#medium {
     display: none;
     position: fixed;
     top: 32px;
@@ -159,26 +159,26 @@ nav>#large {
     z-index: 2;
 }
 
-nav>#large>.tab-bar {
+nav>#medium>.tab-bar {
     display: flex;
     align-items: center;
     padding: 4px;
     gap: 8px;
 }
 
-nav>#large>.tab-bar>.tab-item {
+nav>#medium>.tab-bar>.tab-item {
     padding: 8px 12px;
 }
 
-nav>#large>.tab-bar>.tab-item#selected {
+nav>#medium>.tab-bar>.tab-item#selected {
     position: relative;
 }
 
-nav>#large>.tab-bar>.tab-item#selected>p {
+nav>#medium>.tab-bar>.tab-item#selected>p {
     color: #ff0080;
 }
 
-nav>#large>.tab-bar>.tab-item#selected::before {
+nav>#medium>.tab-bar>.tab-item#selected::before {
     content: "";
     display: block;
     position: absolute;
@@ -194,32 +194,32 @@ nav>#large>.tab-bar>.tab-item#selected::before {
     pointer-events: none;
 }
 
-nav>#large>.tab-bar>svg {
+nav>#medium>.tab-bar>svg {
     width: 24px;
     height: 24px;
 }
 
-nav>#large>.tab-bar:not(:has(> svg:not(.removed) ~ svg:not(.removed)))>svg:not(.removed):first-child {
+nav>#medium>.tab-bar:not(:has(> svg:not(.removed) ~ svg:not(.removed)))>svg:not(.removed):first-child {
     margin-left: 12px;
     margin-right: 4px;
 }
 
-nav>#large>.tab-bar:not(:has(> svg:not(.removed) ~ svg:not(.removed)))>svg:not(.removed):last-child {
+nav>#medium>.tab-bar:not(:has(> svg:not(.removed) ~ svg:not(.removed)))>svg:not(.removed):last-child {
     margin-left: 4px;
     margin-right: 12px;
 }
 
-nav>#large>.tab-bar:has(> svg:first-child:not(.removed):not(:only-child)):has(> svg:last-child:not(.removed):not(:only-child))>svg:first-child {
+nav>#medium>.tab-bar:has(> svg:first-child:not(.removed):not(:only-child)):has(> svg:last-child:not(.removed):not(:only-child))>svg:first-child {
     margin-left: 20px;
     margin-right: 16px;
 }
 
-nav>#large>.tab-bar:has(> svg:first-child:not(.removed):not(:only-child)):has(> svg:last-child:not(.removed):not(:only-child))>svg:last-child {
+nav>#medium>.tab-bar:has(> svg:first-child:not(.removed):not(:only-child)):has(> svg:last-child:not(.removed):not(:only-child))>svg:last-child {
     margin-left: 16px;
     margin-right: 20px;
 }
 
-nav>#large>.tab-bar>.tab-item:hover {
+nav>#medium>.tab-bar>.tab-item:hover {
     background-color: rgba(0, 0, 0, 0.05);
     border-radius: 28px;
     cursor: pointer;
@@ -234,11 +234,11 @@ nav>#large>.tab-bar>.tab-item:hover {
         background-color: rgba(255, 255, 255, 0.1);
     }
 
-    nav>#large>.tab-bar>.tab-item#selected::before {
+    nav>#medium>.tab-bar>.tab-item#selected::before {
         background-color: rgba(255, 255, 255, 0.1);
     }
 
-    nav>#large>.tab-bar>.tab-item:hover {
+    nav>#medium>.tab-bar>.tab-item:hover {
         background-color: rgba(255, 255, 255, 0.05);
     }
 }
@@ -256,7 +256,7 @@ nav>#large>.tab-bar>.tab-item:hover {
         display: none;
     }
 
-    nav>#large {
+    nav>#medium {
         display: flex;
     }
 }

@@ -1,7 +1,7 @@
 console.log("MNMLUI Navbar is working!");
 
 const smallNav = document.querySelector('#small');
-const allTabs = document.querySelectorAll('#small .tab-bar .tab-item, #large .tab-bar .tab-item');
+const allTabs = document.querySelectorAll('#small .tab-bar .tab-item, #medium .tab-bar .tab-item');
 
 let lastScrollY = window.scrollY || window.pageYOffset;
 
