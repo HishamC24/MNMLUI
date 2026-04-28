@@ -7,6 +7,10 @@ nav svg {
     height: 32px;
 }
 
+nav svg * {
+    color: inherit;
+}
+
 nav,
 nav * {
     user-select: none;
@@ -103,7 +107,6 @@ nav>#small>.accessory-bar {
     padding: 8px 16px;
     gap: 8px;
 }
-
 
 nav>#small>.action-btn {
     width: 64px;
