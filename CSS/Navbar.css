@@ -283,7 +283,7 @@ nav>#large>.tab-bar>.tab-item:hover {
         display: none;
     }
 
-    /* nav>#medium {
+    nav>#medium {
         display: flex;
-    } */
+    }
 }

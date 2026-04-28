@@ -9,7 +9,7 @@ if (navLarge) navLarge.style.display = 'none';
 if (navMedium) navMedium.style.display = '';
 
 const toggleNav = (show, hide) => {
-    if (show) show.style.display = '';
+    if (show) show.style.display = 'flex';
     if (hide) hide.style.display = 'none';
 };
 
