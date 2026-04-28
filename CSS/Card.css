@@ -1,8 +1,11 @@
 .card {
     margin: 16px;
     border-radius: 48px;
-    padding: 32px;
     background-color: #ffffff;
+}
+
+.card>p {
+    margin: 32px;
 }
 
 @media (prefers-color-scheme: dark) {
