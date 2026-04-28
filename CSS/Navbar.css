@@ -238,13 +238,15 @@ nav>#large {
 nav>#large>.tab-bar {
     width: 256px;
     height: calc(100dvh - 64px);
-    padding: 32px;
 }
 
 nav>#large>.tab-bar>.tab-item {
     display: flex;
     flex-direction: row;
+    align-items: center;
     gap: 8px;
+    margin: 0px 16px;
+    padding: 8px 16px;
 }
 
 nav>#large>.tab-bar>.tab-item#selected::before {
@@ -257,7 +259,7 @@ nav>#large>.tab-bar>.tab-item:hover {
     cursor: pointer;
 }
 
-nav>#large>.tab-bar>#action-btn {
+nav>#large>.tab-bar>#nav-toggle {
     position: absolute;
     top: 16px;
     right: 16px;
