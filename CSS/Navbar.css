@@ -249,6 +249,23 @@ nav>#large>.tab-bar>.tab-item {
     padding: 8px 16px;
 }
 
+nav>#large>.tab-bar>.tab-item:first-child {
+    margin-top: 56px;
+}
+
+nav>#large>.tab-bar>.tab-item#selected {
+    color: #ff0080;
+    position: relative;
+}
+
+nav>#large>.tab-bar>.tab-item#selected>svg {
+    color: #ff0080;
+}
+
+nav>#large>.tab-bar>.tab-item#selected>p {
+    color: #ff0080;
+}
+
 nav>#large>.tab-bar>.tab-item#selected::before {
     background-color: rgba(0, 0, 0, 0.1);
 }
@@ -268,14 +285,9 @@ nav>#large>.tab-bar>#nav-toggle {
 }
 
 @media (prefers-color-scheme: dark) {
-    nav>#small>.tab-bar>.tab-item#selected::before {
-        background-color: rgba(255, 255, 255, 0.1);
-    }
 
-    nav>#medium>.tab-bar>.tab-item#selected::before {
-        background-color: rgba(255, 255, 255, 0.1);
-    }
-
+    nav>#small>.tab-bar>.tab-item#selected::before,
+    nav>#medium>.tab-bar>.tab-item#selected::before,
     nav>#large>.tab-bar>.tab-item#selected::before {
         background-color: rgba(255, 255, 255, 0.1);
     }
