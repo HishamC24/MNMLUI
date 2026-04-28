@@ -6,6 +6,7 @@
     margin: 0;
     padding: 0;
     -webkit-tap-highlight-color: transparent;
+    color: #000000;
 }
 
 body {
@@ -26,12 +27,12 @@ body {
 }
 
 @media (prefers-color-scheme: dark) {
-    body {
-        background-color: #000000;
+    * {
+        color: #ffffff;
     }
 
-    p {
-        color: #ffffff;
+    body {
+        background-color: #000000;
     }
 
     .glassy {
