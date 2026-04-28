@@ -5,7 +5,7 @@
 }
 
 .card>p {
-    margin: 32px;
+    padding: 32px;
 }
 
 @media (prefers-color-scheme: dark) {
