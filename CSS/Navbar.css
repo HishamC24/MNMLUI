@@ -283,7 +283,7 @@ nav>#large>.tab-bar>.tab-item:hover {
         margin-bottom: 16px;
     }
 
-    body:not(:has(header)) {
+    body:not(:has(header)):has(nav > #large[style*="display: none"]) {
         margin-top: 112px;
     }
 
