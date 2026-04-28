@@ -16,6 +16,10 @@ nav * {
     transition: all 0.25s ease-in-out;
 }
 
+nav {
+    z-index: 1;
+}
+
 nav>#small {
     position: fixed;
     bottom: 0;
@@ -23,7 +27,6 @@ nav>#small {
     gap: 8px;
     padding: 0 32px 32px 32px;
     width: calc(100vw - 64px);
-    z-index: 1;
     flex-wrap: wrap;
     justify-content: center;
     /* allows for no action button layout*/
@@ -156,7 +159,6 @@ nav>#medium {
     justify-content: center;
     align-items: center;
     width: max-content;
-    z-index: 2;
 }
 
 nav>#medium>.tab-bar {
@@ -225,6 +227,24 @@ nav>#medium>.tab-bar>.tab-item:hover {
     cursor: pointer;
 }
 
+nav>#large {
+    display: none;
+    position: fixed;
+    top: 32px;
+    left: 32px;
+    width: 256px;
+}
+
+nav>#large>.tab-bar>.tab-item#selected::before {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+nav>#large>.tab-bar>.tab-item:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 28px;
+    cursor: pointer;
+}
+
 @media (prefers-color-scheme: dark) {
     /* nav svg {
         color: #ffffff;
@@ -235,6 +255,10 @@ nav>#medium>.tab-bar>.tab-item:hover {
     }
 
     nav>#medium>.tab-bar>.tab-item#selected::before {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    nav>#large>.tab-bar>.tab-item#selected::before {
         background-color: rgba(255, 255, 255, 0.1);
     }
 
@@ -256,7 +280,7 @@ nav>#medium>.tab-bar>.tab-item:hover {
         display: none;
     }
 
-    nav>#medium {
+    /* nav>#medium {
         display: flex;
-    }
+    } */
 }
