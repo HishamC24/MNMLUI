@@ -235,7 +235,11 @@ nav>#large {
     position: fixed;
     top: 32px;
     left: 32px;
+}
+
+nav>#large>.tab-bar {
     width: 256px;
+    height: calc(100vh - 64px);
 }
 
 nav>#large>.tab-bar>.tab-item#selected::before {
