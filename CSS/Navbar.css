@@ -154,7 +154,6 @@ nav>#small.compact>.action-btn {
 }
 
 nav>#medium {
-    display: none;
     position: fixed;
     top: 32px;
     left: 50%;
@@ -231,15 +230,9 @@ nav>#medium>.tab-bar>.tab-item:hover {
 }
 
 nav>#large {
-    display: none;
     position: fixed;
     top: 32px;
     left: 32px;
-}
-
-body:has(nav > #large:not([style*="display: none"])) {
-    margin-left: calc(256px + 64px);
-    /* MARGINZ HORIZONTALLY DO NOT OVERLAP, BUT VERTICALLY THEY DO */
 }
 
 nav>#large>.tab-bar {
@@ -258,10 +251,6 @@ nav>#large>.tab-bar>.tab-item:hover {
 }
 
 @media (prefers-color-scheme: dark) {
-    /* nav svg {
-        color: #ffffff;
-    } */
-
     nav>#small>.tab-bar>.tab-item#selected::before {
         background-color: rgba(255, 255, 255, 0.1);
     }
@@ -279,6 +268,14 @@ nav>#large>.tab-bar>.tab-item:hover {
     }
 }
 
+@media (max-width: 699px) {
+
+    nav>#medium,
+    nav>#large {
+        display: none !important;
+    }
+}
+
 @media (min-width: 700px) {
     body {
         margin-bottom: 16px;
@@ -286,6 +283,11 @@ nav>#large>.tab-bar>.tab-item:hover {
 
     body:not(:has(header)):has(nav > #large[style*="display: none"]) {
         margin-top: 112px;
+    }
+
+    body:has(nav > #large:not([style*="display: none"])) {
+        margin-left: calc(256px + 64px);
+        /* MARGINZ HORIZONTALLY DO NOT OVERLAP, BUT VERTICALLY THEY DO */
     }
 
     nav>#small {
