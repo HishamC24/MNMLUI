@@ -3,7 +3,7 @@ console.log("MNMLUI Navbar is working!");
 const smallNav = document.querySelector('nav > #small');
 const navMedium = document.querySelector('nav > #medium');
 const navLarge = document.querySelector('nav > #large');
-const allTabs = document.querySelectorAll('#small .tab-bar .tab-item, #medium .tab-bar .tab-item');
+const allTabs = document.querySelectorAll('#small .tab-bar .tab-item, #medium .tab-bar .tab-item, #large .tab-bar .tab-item');
 
 if (navLarge) navLarge.style.display = 'none';
 if (navMedium) navMedium.style.display = '';
@@ -45,12 +45,18 @@ window.addEventListener('load', handleCompactNav);
 allTabs.forEach(item => {
     item.addEventListener('click', (e) => {
         const clickedLabel = e.currentTarget.querySelector('p')?.innerText.trim();
-
+        const smallTabs = Array.from(document.querySelectorAll('#small .tab-bar .tab-item'));
+        const existsInSmall = smallTabs.some(tab => tab.querySelector('p')?.innerText.trim() === clickedLabel);
         allTabs.forEach(tab => {
+            const isSmallTab = tab.closest('#small') !== null;
+            if (isSmallTab && !existsInSmall) {
+                return;
+            }
             if (tab.id === 'selected') tab.removeAttribute('id');
-            if (tab.querySelector('p')?.innerText.trim() === clickedLabel) tab.id = 'selected';
+            if (tab.querySelector('p')?.innerText.trim() === clickedLabel) {
+                tab.id = 'selected';
+            }
         });
-
         smallNav?.classList.remove('compact');
     });
 });
