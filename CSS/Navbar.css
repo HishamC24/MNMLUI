@@ -248,6 +248,10 @@ nav>#large>.tab-bar>.tab-item:hover {
         margin-bottom: 16px;
     }
 
+    body:not(:has(header)) {
+        margin-top: 112px;
+    }
+
     nav>#small {
         display: none;
     }
