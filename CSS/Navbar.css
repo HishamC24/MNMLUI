@@ -237,6 +237,10 @@ nav>#large {
     left: 32px;
 }
 
+body:has(nav > #large:not([style*="display: none"])) {
+    margin-left: calc(256px + 48px);
+}
+
 nav>#large>.tab-bar {
     width: 256px;
     height: calc(100vh - 64px);
