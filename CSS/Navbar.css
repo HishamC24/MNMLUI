@@ -238,6 +238,8 @@ nav>#large {
 nav>#large>.tab-bar {
     width: 256px;
     height: calc(100dvh - 64px);
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 nav>#large>.tab-bar>.tab-item {
