@@ -9,8 +9,56 @@ if (navLarge) navLarge.style.display = 'none';
 if (navMedium) navMedium.style.display = '';
 
 const toggleNav = (show, hide) => {
-    if (show) show.style.display = 'flex';
-    if (hide) hide.style.display = 'none';
+    if (!show || !hide) return;
+
+    const hideBar = hide.querySelector('.tab-bar');
+    const showBar = show.querySelector('.tab-bar');
+
+    const startRect = hideBar.getBoundingClientRect();
+
+    showBar.style.transition = 'none';
+
+    show.style.display = show.id === 'medium' ? 'flex' : 'block';
+    hide.style.display = 'none';
+
+    const endRect = showBar.getBoundingClientRect();
+
+    const deltaX = startRect.left - endRect.left;
+    const deltaY = startRect.top - endRect.top;
+
+    const animation = showBar.animate([
+        {
+            width: `${startRect.width}px`,
+            height: `${startRect.height}px`,
+            transform: `translate(${deltaX}px, ${deltaY}px)`,
+            borderRadius: '32px',
+            overflow: 'hidden'
+        },
+        {
+            width: `${endRect.width}px`,
+            height: `${endRect.height}px`,
+            transform: `translate(0, 0)`,
+            borderRadius: '32px',
+            overflow: 'hidden'
+        }
+    ], {
+        duration: 350,
+        easing: 'cubic-bezier(0.32, 0.72, 0, 1)'
+    });
+
+    animation.onfinish = () => {
+        showBar.style.transition = '';
+    };
+
+    Array.from(showBar.children).forEach(child => {
+        child.animate([
+            { opacity: 0, transform: 'scale(0.95)' },
+            { opacity: 1, transform: 'scale(1)' }
+        ], {
+            duration: 350,
+            easing: 'cubic-bezier(0.32, 0.72, 0, 1)'
+        });
+    });
 };
 
 navMedium?.querySelector('#nav-toggle')?.addEventListener('click', () => toggleNav(navLarge, navMedium));

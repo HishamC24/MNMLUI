@@ -1,5 +1,6 @@
 body {
     margin-bottom: 128px;
+    transition: margin 0.25s ease-in-out;
 }
 
 nav svg {
