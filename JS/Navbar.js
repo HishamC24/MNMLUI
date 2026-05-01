@@ -80,21 +80,88 @@ const handleCompactNav = () => {
 ['scroll', 'resize'].forEach(e => window.addEventListener(e, handleCompactNav, { passive: true }));
 window.addEventListener('load', handleCompactNav);
 
+const styleSheet = document.createElement("style");
+styleSheet.innerText = `
+    .tab-item.hide-pill#selected::before {
+        display: none !important;
+    }
+`;
+document.head.appendChild(styleSheet);
+
 allTabs.forEach(item => {
     item.addEventListener('click', (e) => {
         const clickedLabel = e.currentTarget.querySelector('p')?.innerText.trim();
         const smallTabs = Array.from(document.querySelectorAll('#small .tab-bar .tab-item'));
         const existsInSmall = smallTabs.some(tab => tab.querySelector('p')?.innerText.trim() === clickedLabel);
-        allTabs.forEach(tab => {
-            const isSmallTab = tab.closest('#small') !== null;
-            if (isSmallTab && !existsInSmall) {
-                return;
-            }
-            if (tab.id === 'selected') tab.removeAttribute('id');
-            if (tab.querySelector('p')?.innerText.trim() === clickedLabel) {
-                tab.id = 'selected';
+
+        ['small', 'medium', 'large'].forEach(navId => {
+            const navContainer = document.querySelector(`nav > #${navId}`);
+            if (!navContainer) return;
+            if (navId === 'small' && !existsInSmall) return;
+
+            const navTabs = Array.from(navContainer.querySelectorAll('.tab-item'));
+            const oldTab = navTabs.find(t => t.id === 'selected');
+            const newTab = navTabs.find(t => t.querySelector('p')?.innerText.trim() === clickedLabel);
+
+            if (oldTab && newTab && oldTab !== newTab) {
+                const tabBar = navContainer.querySelector('.tab-bar');
+                const isVisible = tabBar.getBoundingClientRect().width > 0;
+
+                if (isVisible) {
+                    const tabBarRect = tabBar.getBoundingClientRect();
+                    const oldRect = oldTab.getBoundingClientRect();
+                    const newRect = newTab.getBoundingClientRect();
+
+                    let oldHeight = oldRect.height, oldTop = oldRect.top - tabBarRect.top;
+                    let newHeight = newRect.height, newTop = newRect.top - tabBarRect.top;
+
+                    if (navId === 'small') {
+                        oldHeight = 56;
+                        oldTop = (oldRect.top - tabBarRect.top) + (oldRect.height - 56) / 2;
+                        newHeight = 56;
+                        newTop = (newRect.top - tabBarRect.top) + (newRect.height - 56) / 2;
+                    }
+
+                    const oldLeft = oldRect.left - tabBarRect.left;
+                    const newLeft = newRect.left - tabBarRect.left;
+
+                    const ghost = document.createElement('div');
+                    const isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    ghost.style.position = 'absolute';
+                    ghost.style.backgroundColor = isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)';
+                    ghost.style.pointerEvents = 'none';
+                    ghost.style.zIndex = '0';
+
+                    tabBar.style.position = 'relative';
+                    tabBar.appendChild(ghost);
+
+                    newTab.classList.add('hide-pill');
+                    oldTab.removeAttribute('id');
+                    newTab.id = 'selected';
+
+                    const radius = navId === 'large' ? '24px' : '28px';
+
+                    const animation = ghost.animate([
+                        { top: `${oldTop}px`, left: `${oldLeft}px`, width: `${oldRect.width}px`, height: `${oldHeight}px`, borderRadius: radius },
+                        { top: `${newTop}px`, left: `${newLeft}px`, width: `${newRect.width}px`, height: `${newHeight}px`, borderRadius: radius }
+                    ], {
+                        duration: 250,
+                        easing: 'ease-in-out'
+                    });
+
+                    animation.onfinish = () => {
+                        ghost.remove();
+                        newTab.classList.remove('hide-pill');
+                    };
+                } else {
+                    oldTab.removeAttribute('id');
+                    newTab.id = 'selected';
+                }
+            } else if (!oldTab && newTab) {
+                newTab.id = 'selected';
             }
         });
+
         smallNav?.classList.remove('compact');
     });
 });
