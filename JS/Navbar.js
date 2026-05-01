@@ -106,8 +106,9 @@ allTabs.forEach(item => {
             if (oldTab && newTab && oldTab !== newTab) {
                 const tabBar = navContainer.querySelector('.tab-bar');
                 const isVisible = tabBar.getBoundingClientRect().width > 0;
-
                 if (isVisible) {
+                    tabBar.style.position = 'relative';
+
                     let oldHeight = oldTab.offsetHeight;
                     let oldWidth = oldTab.offsetWidth;
                     let oldTop = oldTab.offsetTop;
@@ -132,7 +133,6 @@ allTabs.forEach(item => {
                     ghost.style.pointerEvents = 'none';
                     ghost.style.zIndex = '0';
 
-                    tabBar.style.position = 'relative';
                     tabBar.appendChild(ghost);
 
                     newTab.classList.add('hide-pill');
