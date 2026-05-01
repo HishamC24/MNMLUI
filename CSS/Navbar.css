@@ -299,6 +299,12 @@ nav>#large>.tab-bar>#nav-toggle {
     height: 24px;
 }
 
+
+nav>#medium>.tab-bar>svg#nav-toggle,
+nav>#large>.tab-bar>svg#nav-toggle {
+    transform: rotate(180deg);
+}
+
 @media (prefers-color-scheme: dark) {
 
     nav>#small>.tab-bar>.tab-item#selected::before,
