@@ -108,22 +108,22 @@ allTabs.forEach(item => {
                 const isVisible = tabBar.getBoundingClientRect().width > 0;
 
                 if (isVisible) {
-                    const tabBarRect = tabBar.getBoundingClientRect();
-                    const oldRect = oldTab.getBoundingClientRect();
-                    const newRect = newTab.getBoundingClientRect();
+                    let oldHeight = oldTab.offsetHeight;
+                    let oldWidth = oldTab.offsetWidth;
+                    let oldTop = oldTab.offsetTop;
+                    let oldLeft = oldTab.offsetLeft;
 
-                    let oldHeight = oldRect.height, oldTop = oldRect.top - tabBarRect.top;
-                    let newHeight = newRect.height, newTop = newRect.top - tabBarRect.top;
+                    let newHeight = newTab.offsetHeight;
+                    let newWidth = newTab.offsetWidth;
+                    let newTop = newTab.offsetTop;
+                    let newLeft = newTab.offsetLeft;
 
                     if (navId === 'small') {
+                        oldTop = oldTop + (oldHeight - 56) / 2;
                         oldHeight = 56;
-                        oldTop = (oldRect.top - tabBarRect.top) + (oldRect.height - 56) / 2;
+                        newTop = newTop + (newHeight - 56) / 2;
                         newHeight = 56;
-                        newTop = (newRect.top - tabBarRect.top) + (newRect.height - 56) / 2;
                     }
-
-                    const oldLeft = oldRect.left - tabBarRect.left;
-                    const newLeft = newRect.left - tabBarRect.left;
 
                     const ghost = document.createElement('div');
                     const isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -142,11 +142,27 @@ allTabs.forEach(item => {
                     const radius = navId === 'large' ? '24px' : '28px';
 
                     const animation = ghost.animate([
-                        { top: `${oldTop}px`, left: `${oldLeft}px`, width: `${oldRect.width}px`, height: `${oldHeight}px`, borderRadius: radius },
-                        { top: `${newTop}px`, left: `${newLeft}px`, width: `${newRect.width}px`, height: `${newHeight}px`, borderRadius: radius }
+                        { top: `${oldTop}px`, left: `${oldLeft}px`, width: `${oldWidth}px`, height: `${oldHeight}px`, borderRadius: radius },
+                        { top: `${newTop}px`, left: `${newLeft}px`, width: `${newWidth}px`, height: `${newHeight}px`, borderRadius: radius }
                     ], {
                         duration: 250,
                         easing: 'ease-in-out'
+                    });
+
+                    const idleColor = isDark ? 'rgb(255, 255, 255)' : 'rgb(0, 0, 0)';
+
+                    [oldTab, ...oldTab.querySelectorAll('svg, p')].forEach(el => {
+                        el.animate([
+                            { color: idleColor, offset: 0.5 },
+                            { color: idleColor }
+                        ], { duration: 250, easing: 'ease-in-out' });
+                    });
+
+                    [newTab, ...newTab.querySelectorAll('svg, p')].forEach(el => {
+                        el.animate([
+                            { color: idleColor },
+                            { color: idleColor, offset: 0.5 },
+                        ], { duration: 250, easing: 'ease-in-out' });
                     });
 
                     animation.onfinish = () => {
