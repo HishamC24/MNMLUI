@@ -42,8 +42,8 @@ const toggleNav = (show, hide) => {
             overflow: 'hidden'
         }
     ], {
-        duration: 350,
-        easing: 'cubic-bezier(0.32, 0.72, 0, 1)'
+        duration: 250,
+        easing: 'ease-in-out'
     });
 
     animation.onfinish = () => {
@@ -55,8 +55,8 @@ const toggleNav = (show, hide) => {
             { opacity: 0, transform: 'scale(0.95)' },
             { opacity: 1, transform: 'scale(1)' }
         ], {
-            duration: 350,
-            easing: 'cubic-bezier(0.32, 0.72, 0, 1)'
+            duration: 250,
+            easing: 'ease-in-out'
         });
     });
 };
