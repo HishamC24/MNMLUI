@@ -353,16 +353,37 @@ nav>#large>.tab-bar {
     view-transition-name: mnmlui-nav-toggle;
 }
 
-::view-transition-group(mnmlui-tab-bar),
-::view-transition-group(mnmlui-nav-toggle) {
-    animation-duration: 0.25s;
-    animation-timing-function: ease-in-out;
+#medium .tab-item:nth-of-type(1),
+#large .tab-item:nth-of-type(1) {
+    view-transition-name: mnmlui-tab-1;
 }
 
-::view-transition-old(mnmlui-tab-bar),
-::view-transition-new(mnmlui-tab-bar),
-::view-transition-old(mnmlui-nav-toggle),
-::view-transition-new(mnmlui-nav-toggle) {
+#medium .tab-item:nth-of-type(2),
+#large .tab-item:nth-of-type(2) {
+    view-transition-name: mnmlui-tab-2;
+}
+
+#medium .tab-item:nth-of-type(3),
+#large .tab-item:nth-of-type(3) {
+    view-transition-name: mnmlui-tab-3;
+}
+
+#medium .tab-item:nth-of-type(4),
+#large .tab-item:nth-of-type(4) {
+    view-transition-name: mnmlui-tab-4;
+}
+
+#medium .action-btn {
+    view-transition-name: mnmlui-action;
+}
+
+::view-transition-group(mnmlui-tab-bar),
+::view-transition-group(mnmlui-nav-toggle),
+::view-transition-group(mnmlui-tab-1),
+::view-transition-group(mnmlui-tab-2),
+::view-transition-group(mnmlui-tab-3),
+::view-transition-group(mnmlui-tab-4),
+::view-transition-group(mnmlui-action) {
     animation-duration: 0.25s;
     animation-timing-function: ease-in-out;
 }
@@ -372,5 +393,7 @@ nav>#large>.tab-bar {
     height: 100%;
     width: 100%;
     object-fit: cover;
-    object-position: top left;
+    object-position: center;
+    animation-duration: 0.25s;
+    animation-timing-function: ease-in-out;
 }
