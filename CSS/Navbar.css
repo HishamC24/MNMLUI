@@ -390,10 +390,19 @@ nav>#large>.tab-bar {
 
 ::view-transition-old(mnmlui-tab-bar),
 ::view-transition-new(mnmlui-tab-bar) {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    object-position: center;
-    animation-duration: 0.25s;
-    animation-timing-function: ease-in-out;
+    display: none;
+}
+
+::view-transition-group(mnmlui-tab-bar) {
+    background-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 64px 0 rgba(0, 0, 0, 0.10);
+    backdrop-filter: blur(2px);
+    border-radius: 32px;
+    overflow: hidden;
+}
+
+@media (prefers-color-scheme: dark) {
+    ::view-transition-group(mnmlui-tab-bar) {
+        background-color: rgba(64, 64, 64, 0.5);
+    }
 }
