@@ -9,8 +9,16 @@ if (navLarge) navLarge.style.display = 'none';
 if (navMedium) navMedium.style.display = '';
 
 const toggleNav = (show, hide) => {
-    if (show) show.style.display = 'flex';
-    if (hide) hide.style.display = 'none';
+    const updateDOM = () => {
+        if (show) show.style.display = show.id === 'medium' ? 'flex' : 'block';
+        if (hide) hide.style.display = 'none';
+    };
+
+    if (document.startViewTransition) {
+        document.startViewTransition(updateDOM);
+    } else {
+        updateDOM();
+    }
 };
 
 navMedium?.querySelector('#nav-toggle')?.addEventListener('click', () => toggleNav(navLarge, navMedium));
