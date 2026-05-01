@@ -49,16 +49,6 @@ const toggleNav = (show, hide) => {
     animation.onfinish = () => {
         showBar.style.transition = '';
     };
-
-    Array.from(showBar.children).forEach(child => {
-        child.animate([
-            { opacity: 0, transform: 'scale(0.95)' },
-            { opacity: 1, transform: 'scale(1)' }
-        ], {
-            duration: 250,
-            easing: 'ease-in-out'
-        });
-    });
 };
 
 navMedium?.querySelector('#nav-toggle')?.addEventListener('click', () => toggleNav(navLarge, navMedium));
