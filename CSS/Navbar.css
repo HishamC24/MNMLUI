@@ -205,13 +205,13 @@ nav>#medium>.tab-bar>svg {
 }
 
 nav>#medium>.tab-bar:not(:has(> svg:not(.removed) ~ svg:not(.removed)))>svg:last-of-type:not(.removed) {
-    margin-left: 4px;
-    margin-right: 12px;
+    margin-left: 12px;
+    margin-right: 4px;
 }
 
 nav>#medium>.tab-bar:not(:has(> svg:not(.removed) ~ svg:not(.removed)))>svg:first-of-type:not(.removed) {
-    margin-left: 12px;
-    margin-right: 4px;
+    margin-left: 4px;
+    margin-right: 12px;
 }
 
 nav>#medium>.tab-bar:has(> svg:not(.removed) ~ svg:not(.removed))>svg:first-of-type:not(.removed) {
