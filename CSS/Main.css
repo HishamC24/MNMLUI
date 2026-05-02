@@ -2,6 +2,10 @@
 @import url('./Card.css');
 @import url('./Header.css');
 
+:root {
+    --MNMLUI-ACCENT: #ff0080;
+}
+
 * {
     margin: 0;
     padding: 0;
