@@ -204,22 +204,22 @@ nav>#medium>.tab-bar>svg {
     height: 24px;
 }
 
-nav>#medium>.tab-bar:not(:has(> svg:not(.removed) ~ svg:not(.removed)))>svg:not(.removed):first-of-type {
+nav>#medium>.tab-bar:not(:has(> svg:not(.removed) ~ svg:not(.removed)))>svg:not(.removed):first-child {
     margin-left: 12px;
     margin-right: 4px;
 }
 
-nav>#medium>.tab-bar:not(:has(> svg:not(.removed) ~ svg:not(.removed)))>svg:not(.removed):last-of-type {
+nav>#medium>.tab-bar:not(:has(> svg:not(.removed) ~ svg:not(.removed)))>svg:not(.removed):last-child {
     margin-left: 4px;
     margin-right: 12px;
 }
 
-nav>#medium>.tab-bar:has(> svg:first-of-type:not(.removed):not(:only-child)):has(> svg:last-of-type:not(.removed):not(:only-child))>svg:first-of-type {
+nav>#medium>.tab-bar:has(> svg:first-child:not(.removed):not(:only-child)):has(> svg:last-child:not(.removed):not(:only-child))>svg:first-child {
     margin-left: 20px;
     margin-right: 16px;
 }
 
-nav>#medium>.tab-bar:has(> svg:first-of-type:not(.removed):not(:only-child)):has(> svg:last-of-type:not(.removed):not(:only-child))>svg:last-of-type {
+nav>#medium>.tab-bar:has(> svg:first-child:not(.removed):not(:only-child)):has(> svg:last-child:not(.removed):not(:only-child))>svg:last-child {
     margin-left: 16px;
     margin-right: 20px;
 }
