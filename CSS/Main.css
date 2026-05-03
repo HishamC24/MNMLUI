@@ -25,8 +25,6 @@ body {
     backdrop-filter: blur(2px);
     border-radius: 32px;
     transition: background-color 0.5s ease-in-out;
-    transform: translateZ(0);
-    will-change: transform, backdrop-filter;
 }
 
 .glassy:active {
