@@ -96,9 +96,9 @@ allTabs.forEach(item => {
     console.log("MNMLUI Navbar Pass-B1");
     item.addEventListener('click', (e) => {
         console.log("MNMLUI Navbar Pass-B2");
-        const clickedLabel = e.currentTarget.querySelector('p')?.innerText.trim();
+        const clickedLabel = e.currentTarget.querySelector('p')?.textContent.trim();
         const smallTabs = Array.from(document.querySelectorAll('#small .tab-bar .tab-item'));
-        const existsInSmall = smallTabs.some(tab => tab.querySelector('p')?.innerText.trim() === clickedLabel);
+        const existsInSmall = smallTabs.some(tab => tab.querySelector('p')?.textContent.trim() === clickedLabel);
 
         ['small', 'medium', 'large'].forEach(navId => {
             console.log("MNMLUI Navbar Pass-B3");
@@ -113,7 +113,7 @@ allTabs.forEach(item => {
             console.log("MNMLUI Navbar Pass-B3.4");
             const oldTab = navTabs.find(t => t.id === 'selected');
             console.log("MNMLUI Navbar Pass-B3.5");
-            const newTab = navTabs.find(t => t.querySelector('p')?.innerText.trim() === clickedLabel);
+            const newTab = navTabs.find(t => t.querySelector('p')?.textContent.trim() === clickedLabel);
             console.log("MNMLUI Navbar Pass-B3.6");
 
             if (oldTab && newTab && oldTab !== newTab) {
