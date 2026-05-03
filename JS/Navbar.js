@@ -131,7 +131,7 @@ allTabs.forEach(item => {
                     ghost.style.position = 'absolute';
                     ghost.style.backgroundColor = isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)';
                     ghost.style.pointerEvents = 'none';
-                    ghost.style.zIndex = '1';
+                    ghost.style.zIndex = '2';
 
                     tabBar.appendChild(ghost);
 
