@@ -53,15 +53,18 @@ const toggleNav = (show, hide) => {
 
 navMedium?.querySelector('#nav-toggle')?.addEventListener('click', () => toggleNav(navLarge, navMedium));
 navLarge?.querySelector('#nav-toggle')?.addEventListener('click', () => toggleNav(navMedium, navLarge));
+console.log("MNMLUI Navbar Pass-A");
 
 let lastScrollY = window.scrollY || window.pageYOffset;
 
 const getDocHeight = () => {
+    console.log("MNMLUI Navbar Pass-A1");
     const { body: b, documentElement: e } = document;
     return Math.max(b.scrollHeight, e.scrollHeight, b.offsetHeight, e.offsetHeight, b.clientHeight, e.clientHeight);
 };
 
 const handleCompactNav = () => {
+    console.log("MNMLUI Navbar Pass-A2");
     if (!smallNav) return;
 
     const y = window.scrollY || window.pageYOffset;
@@ -79,6 +82,7 @@ const handleCompactNav = () => {
 
 ['scroll', 'resize'].forEach(e => window.addEventListener(e, handleCompactNav, { passive: true }));
 window.addEventListener('load', handleCompactNav);
+console.log("MNMLUI Navbar Pass-B");
 
 const styleSheet = document.createElement("style");
 styleSheet.innerText = `
@@ -89,12 +93,15 @@ styleSheet.innerText = `
 document.head.appendChild(styleSheet);
 
 allTabs.forEach(item => {
+    console.log("MNMLUI Navbar Pass-B1");
     item.addEventListener('click', (e) => {
+        console.log("MNMLUI Navbar Pass-B2");
         const clickedLabel = e.currentTarget.querySelector('p')?.innerText.trim();
         const smallTabs = Array.from(document.querySelectorAll('#small .tab-bar .tab-item'));
         const existsInSmall = smallTabs.some(tab => tab.querySelector('p')?.innerText.trim() === clickedLabel);
 
         ['small', 'medium', 'large'].forEach(navId => {
+            console.log("MNMLUI Navbar Pass-B3");
             const navContainer = document.querySelector(`nav > #${navId}`);
             if (!navContainer) return;
             if (navId === 'small' && !existsInSmall) return;
@@ -104,10 +111,11 @@ allTabs.forEach(item => {
             const newTab = navTabs.find(t => t.querySelector('p')?.innerText.trim() === clickedLabel);
 
             if (oldTab && newTab && oldTab !== newTab) {
+                console.log("MNMLUI Navbar Pass-B4");
                 const tabBar = navContainer.querySelector('.tab-bar');
                 const isVisible = tabBar.getBoundingClientRect().width > 0;
-                console.log("Tab Bar Width:", tabBar.getBoundingClientRect().width); // REMOVE WHEN DONE
                 if (isVisible) {
+                    console.log("MNMLUI Navbar Pass-B5");
                     tabBar.style.position = 'relative';
 
                     let oldHeight = oldTab.offsetHeight;
@@ -171,14 +179,18 @@ allTabs.forEach(item => {
                         newTab.classList.remove('hide-pill');
                     };
                 } else {
+                    console.log("MNMLUI Navbar Pass-B6");
                     oldTab.removeAttribute('id');
                     newTab.id = 'selected';
                 }
             } else if (!oldTab && newTab) {
+                console.log("MNMLUI Navbar Pass-B7");
                 newTab.id = 'selected';
             }
         });
 
+        console.log("MNMLUI Navbar Pass-B8");
         smallNav?.classList.remove('compact');
     });
 });
+console.log("MNMLUI Navbar Pass-C");
