@@ -103,12 +103,18 @@ allTabs.forEach(item => {
         ['small', 'medium', 'large'].forEach(navId => {
             console.log("MNMLUI Navbar Pass-B3");
             const navContainer = document.querySelector(`nav > #${navId}`);
+            console.log("MNMLUI Navbar Pass-B3.1");
             if (!navContainer) return;
+            console.log("MNMLUI Navbar Pass-B3.2");
             if (navId === 'small' && !existsInSmall) return;
+            console.log("MNMLUI Navbar Pass-B3.3");
 
             const navTabs = Array.from(navContainer.querySelectorAll('.tab-item'));
+            console.log("MNMLUI Navbar Pass-B3.4");
             const oldTab = navTabs.find(t => t.id === 'selected');
+            console.log("MNMLUI Navbar Pass-B3.5");
             const newTab = navTabs.find(t => t.querySelector('p')?.innerText.trim() === clickedLabel);
+            console.log("MNMLUI Navbar Pass-B3.6");
 
             if (oldTab && newTab && oldTab !== newTab) {
                 console.log("MNMLUI Navbar Pass-B4");
