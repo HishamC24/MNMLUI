@@ -22,7 +22,7 @@ body {
 
 .glassy {
     background-color: rgba(255, 255, 255, 0.5);
-    box-shadow: 0 0 64px 0 rgba(0, 0, 0, 0.10);
+    box-shadow: 0 0 64px 0 rgba(0, 0, 0, 0.10), inset 0px -1px 0px 0px #ffffff40, inset 0px 1px 0px 0 #ffffff40;
     backdrop-filter: blur(2px);
     border-radius: 32px;
     transition: background-color 0.5s ease-in-out;
@@ -43,6 +43,7 @@ body {
 
     .glassy {
         background-color: rgba(64, 64, 64, 0.5);
+        box-shadow: 0 0 64px 0 rgba(0, 0, 0, 0.10), inset 0px -1px 0px 0px #80808040, inset 0px 1px 0px 0 #80808040;
     }
 
     .glassy:active {
