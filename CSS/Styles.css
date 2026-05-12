@@ -36,12 +36,20 @@ body {
     background-color: color-mix(in srgb, var(--MNMLUI-ACCENT) 75%, transparent 25%);
 }
 
+.clearer {
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+.clearer:active {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
 .clear {
-    background-color: #ffffff00;
+    background-color: rgba(255, 255, 255, 0.0);
 }
 
 .clear:active {
-    background-color: #ffffff40;
+    background-color: rgba(255, 255, 255, 0.25);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -70,15 +78,22 @@ body {
         background-color: color-mix(in srgb, var(--MNMLUI-ACCENT) 75%, transparent 25%);
     }
 
+    .clearer {
+        background-color: rgba(64, 64, 64, 0.25);
+    }
+    
+    .clearer:active {
+        background-color: rgba(64, 64, 64, 0.5);
+    }
+
     .clear {
-        background-color: #80808000;
+        background-color: rgba(64, 64, 64, 0.00);
     }
 
     .clear:active {
-        background-color: #80808040;
+        background-color: rgba(64, 64, 64, 0.25);
     }
 }
-
 
 .removed {
     display: none !important;
