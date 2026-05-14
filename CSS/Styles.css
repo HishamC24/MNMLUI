@@ -28,7 +28,7 @@ body {
 
 .glassy:active {
     background-color: rgba(255, 255, 255, 0.75);
-    transform: scale(1.05);
+    transform: scale(1.25);
 }
 
 .tinted {
