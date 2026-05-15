@@ -31,6 +31,14 @@ body {
     transform: scale(1.1);
 }
 
+.glassy.sc-m:active {
+    transform: scale(1.05);
+}
+
+.glassy.sc-l:active {
+    transform: scale(1.01);
+}
+
 .tinted {
     background-color: color-mix(in srgb, var(--MNMLUI-ACCENT) 50%, transparent 50%);
 }
