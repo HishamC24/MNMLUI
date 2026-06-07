@@ -18,8 +18,22 @@ body {
 }
 
 .glassy {
+    --glassy-glow-color: rgba(255, 255, 255, 0.25);
+    --glassy-highlight-color: rgba(255, 255, 255, 0.5);
+
+    --glassy-glow-top: inset 0px -2px 0.5px -1px var(--glassy-glow-color);
+    --glassy-glow-bottom: inset 0px 2px 0.5px -1px var(--glassy-glow-color);
+    --glassy-highlight-top: inset 0px -1px 0px -0.75px var(--glassy-highlight-color);
+    --glassy-highlight-bottom: inset 0px 1px 0px -0.75px var(--glassy-highlight-color);
+
+
     background-color: rgba(255, 255, 255, 0.5);
-    box-shadow: 0 0 64px 0 rgba(0, 0, 0, 0.10), inset 0px -2px 1px -1px rgba(255, 255, 255, 0.25), inset 0px 2px 1px -1px rgba(255, 255, 255, 0.25);
+    box-shadow:
+        0 0 64px 0 rgba(0, 0, 0, 0.10),
+        var(--glassy-glow-top),
+        var(--glassy-glow-bottom),
+        var(--glassy-highlight-top),
+        var(--glassy-highlight-bottom);
     backdrop-filter: blur(2px);
     border-radius: 32px;
     transition: background-color 0.25s ease-in-out, transform 0.25s cubic-bezier(0.25, 1.00, 0.25, 1.50);
@@ -72,8 +86,9 @@ body.permDark {
 }
 
 .glassy.permDark {
+    --glassy-glow-color: rgba(128, 128, 128, 0.25);
+
     background-color: rgba(64, 64, 64, 0.5);
-    box-shadow: 0 0 64px 0 rgba(0, 0, 0, 0.10), inset 0px -2px 1px -1px rgba(128, 128, 128, 0.25), inset 0px 2px 1px -1px rgba(128, 128, 128, 0.25);
 }
 
 .glassy.permDark:active {
@@ -106,8 +121,9 @@ body.permDark {
     }
 
     .glassy {
+        --glassy-glow-color: rgba(128, 128, 128, 0.25);
+
         background-color: rgba(64, 64, 64, 0.5);
-        box-shadow: 0 0 64px 0 rgba(0, 0, 0, 0.10), inset 0px -2px 1px -1px rgba(128, 128, 128, 0.25), inset 0px 2px 1px -1px rgba(128, 128, 128, 0.25);
     }
 
     .glassy:active {
@@ -147,8 +163,9 @@ body.permDark {
     }
 
     .glassy.permLight {
+        --glassy-glow-color: rgba(255, 255, 255, 0.25);
+
         background-color: rgba(255, 255, 255, 0.5);
-        box-shadow: 0 0 64px 0 rgba(0, 0, 0, 0.10), inset 0px -2px 1px -1px rgba(255, 255, 255, 0.25), inset 0px 2px 1px -1px rgba(255, 255, 255, 0.25);
     }
 
     .glassy.permLight:active {
