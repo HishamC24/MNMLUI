@@ -52,7 +52,7 @@ body {
         repeating-conic-gradient(#000 0 0.0001%, #fff 0 0.0002%) 40% 40%/3000px 3000px;
     background-blend-mode: difference;
 
-    opacity: 0.01;
+    opacity: 0.025;
 }
 
 .glassy:active {
