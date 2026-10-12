@@ -23,6 +23,7 @@ nav * {
 
 nav {
     z-index: 2;
+    position: fixed;
 }
 
 nav>#small {
@@ -296,8 +297,8 @@ nav>#large>.tab-bar>.tab-item:hover {
 
 nav>#large>.tab-bar>#nav-toggle {
     position: absolute;
-    top: 16px;
-    right: 16px;
+    top: 20px;
+    right: 24px;
     width: 24px;
     height: 24px;
 }
