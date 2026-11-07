@@ -1,11 +1,13 @@
 .card {
     margin: 16px;
+    padding-top: 32px;
     border-radius: 48px;
     background-color: #ffffff;
 }
 
 .card>p {
-    padding: 32px;
+    margin: 0px 32px;
+    padding-bottom: 32px;
 }
 
 @media (prefers-color-scheme: dark) {
