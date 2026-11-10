@@ -1,5 +1,7 @@
-@import url('./Navbar.css');
+@import url('./Styles.css');
+
 @import url('./Card.css');
 @import url('./Header.css');
-@import url('./Styles.css');
+@import url('./Navbar.css');
+@import url('./Slider.css');
 @import url('./Switch.css');
