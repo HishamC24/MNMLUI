@@ -47,10 +47,9 @@ input[type="range"]::-webkit-slider-thumb {
     height: 16px;
     border-radius: 8px;
     background-color: #ffffff;
-    /* Main shadow + dynamic green track fill extending 1000px to the left */
-    box-shadow: 0 0 16px 4px rgba(0, 0, 0, 0.10), -1000px 0 0 1000px #30BE30;
-    margin-top: -6px; /* Center 16px thumb on 4px track: (4px - 16px) / 2 */
-    transition: all 0.25s cubic-bezier(0.25, 1.00, 0.25, 1.50);
+    box-shadow: 0px 0px 16px 4px rgba(0, 0, 0, 0.10), -1000px 0 0 1000px #30BE30;
+    margin-top: -6px; /* Centers 16px thumb on 4px track: (4px - 16px) / 2 */
+    transition: width 0.2s, height 0.2s, border-radius 0.2s, background-color 0.2s, margin-top 0.2s;
 }
 
 /* Firefox Thumb */
@@ -60,8 +59,8 @@ input[type="range"]::-moz-range-thumb {
     border-radius: 8px;
     border: none;
     background-color: #ffffff;
-    box-shadow: 0 0 16px 4px rgba(0, 0, 0, 0.10);
-    transition: all 0.25s cubic-bezier(0.25, 1.00, 0.25, 1.50);
+    box-shadow: 0px 0px 16px 4px rgba(0, 0, 0, 0.10);
+    transition: width 0.2s, height 0.2s, border-radius 0.2s, background-color 0.2s;
 }
 
 /* WebKit Active / Sliding State */
@@ -72,8 +71,8 @@ input[type="range"]:active::-webkit-slider-thumb {
     background-color: rgba(255, 255, 255, 0.25);
     backdrop-filter: blur(2px);
     -webkit-backdrop-filter: blur(2px);
-    box-shadow: 0 0 16px 4px rgba(0, 0, 0, 0.10), -1000px 0 0 1000px #30BE30;
-    margin-top: -12px; /* Center 28px expanded thumb on 4px track: (4px - 28px) / 2 */
+    box-shadow: 0px 0px 16px 4px rgba(0, 0, 0, 0.10), -1000px 0 0 1000px #30BE30;
+    margin-top: -12px; /* Centers 28px expanded thumb on 4px track: (4px - 28px) / 2 */
 }
 
 /* Firefox Active / Sliding State */
@@ -83,5 +82,5 @@ input[type="range"]:active::-moz-range-thumb {
     border-radius: 14px;
     background-color: rgba(255, 255, 255, 0.25);
     backdrop-filter: blur(2px);
-    box-shadow: 0 0 16px 4px rgba(0, 0, 0, 0.10);
+    box-shadow: 0px 0px 16px 4px rgba(0, 0, 0, 0.10);
 }
