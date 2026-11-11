@@ -9,13 +9,12 @@
 input[type="range"] {
     -webkit-appearance: none;
     appearance: none;
-    width: 100%;
-    height: 4px;
-    border-radius: 2px;
-    background: #d9d9d9;
+    height: 28px;
+    background: transparent;
     outline: none;
     cursor: pointer;
-    overflow: hidden; /* Clips the thumb shadow to form the progress track */
+    overflow-x: clip;
+    /* Clips the track fill horizontally without cutting off vertical drop shadows */
 }
 
 /* WebKit (Chrome, Edge, Safari) Track */
@@ -39,7 +38,7 @@ input[type="range"]::-moz-range-progress {
     border-radius: 2px;
 }
 
-/* WebKit Thumb with Pure-CSS Dynamic Progress Fill */
+/* WebKit Thumb */
 input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
@@ -47,9 +46,11 @@ input[type="range"]::-webkit-slider-thumb {
     height: 16px;
     border-radius: 8px;
     background-color: #ffffff;
-    box-shadow: 0px 0px 16px 4px rgba(0, 0, 0, 0.10), -1000px 0 0 1000px #30BE30;
-    margin-top: -6px; /* Centers 16px thumb on 4px track: (4px - 16px) / 2 */
-    transition: width 0.2s, height 0.2s, border-radius 0.2s, background-color 0.2s, margin-top 0.2s;
+    box-shadow: 0px 0px 16px 4px rgba(0, 0, 0, 0.10);
+    margin-top: -6px;
+    /* Centers 16px thumb on 4px track: (4px - 16px) / 2 */
+    border-image: linear-gradient(90deg, #30BE30 50%, transparent 0) 0 1 / 6px 0 6px 100vw / 0 0 0 100vw;
+    transition: all 0.25s ease-in-out;
 }
 
 /* Firefox Thumb */
@@ -60,7 +61,7 @@ input[type="range"]::-moz-range-thumb {
     border: none;
     background-color: #ffffff;
     box-shadow: 0px 0px 16px 4px rgba(0, 0, 0, 0.10);
-    transition: width 0.2s, height 0.2s, border-radius 0.2s, background-color 0.2s;
+    transition: all 0.25s ease-in-out;
 }
 
 /* WebKit Active / Sliding State */
@@ -71,8 +72,9 @@ input[type="range"]:active::-webkit-slider-thumb {
     background-color: rgba(255, 255, 255, 0.25);
     backdrop-filter: blur(2px);
     -webkit-backdrop-filter: blur(2px);
-    box-shadow: 0px 0px 16px 4px rgba(0, 0, 0, 0.10), -1000px 0 0 1000px #30BE30;
-    margin-top: -12px; /* Centers 28px expanded thumb on 4px track: (4px - 28px) / 2 */
+    margin-top: -12px;
+    /* Centers 28px thumb on 4px track: (4px - 28px) / 2 */
+    border-image: linear-gradient(90deg, #30BE30 50%, transparent 0) 0 1 / 12px 0 12px 100vw / 0 0 0 100vw;
 }
 
 /* Firefox Active / Sliding State */
@@ -82,5 +84,6 @@ input[type="range"]:active::-moz-range-thumb {
     border-radius: 14px;
     background-color: rgba(255, 255, 255, 0.25);
     backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
     box-shadow: 0px 0px 16px 4px rgba(0, 0, 0, 0.10);
 }
