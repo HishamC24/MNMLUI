@@ -1,3 +1,4 @@
+/* Base Slider Label */
 .slider {
     display: flex;
     flex-direction: column;
@@ -6,15 +7,27 @@
     gap: 12px;
 }
 
+/* Wrapper container to manage height and track clipping */
+.slider-wrapper {
+    position: relative;
+    height: 28px;
+    display: flex;
+    align-items: center;
+}
+
+/* Range Input Base Styling */
 input[type="range"] {
+    position: absolute;
+    inset: 0;
+    height: 28px;
     -webkit-appearance: none;
     appearance: none;
-    height: 28px;
     background: transparent;
     outline: none;
     cursor: pointer;
-    overflow-x: clip;
-    /* Clips the track fill horizontally without cutting off vertical drop shadows */
+    margin: 0;
+    overflow: hidden;
+    border-radius: 2px;
 }
 
 /* WebKit (Chrome, Edge, Safari) Track */
@@ -31,14 +44,14 @@ input[type="range"]::-moz-range-track {
     background: #d9d9d9;
 }
 
-/* Firefox Progress Fill */
+/* Firefox Native Progress Fill */
 input[type="range"]::-moz-range-progress {
     background-color: #30BE30;
     height: 4px;
     border-radius: 2px;
 }
 
-/* WebKit Thumb */
+/* WebKit Thumb (Default State) */
 input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
@@ -46,14 +59,12 @@ input[type="range"]::-webkit-slider-thumb {
     height: 16px;
     border-radius: 8px;
     background-color: #ffffff;
-    box-shadow: 0px 0px 16px 4px rgba(0, 0, 0, 0.10);
+    box-shadow: 0px 0px 16px 4px rgba(0, 0, 0, 0.10), -1000px 0 0 -6px #30BE30;
     margin-top: -6px;
-    /* Centers 16px thumb on 4px track: (4px - 16px) / 2 */
-    border-image: linear-gradient(90deg, #30BE30 50%, transparent 0) 0 1 / 6px 0 6px 100vw / 0 0 0 100vw;
     transition: all 0.25s ease-in-out;
 }
 
-/* Firefox Thumb */
+/* Firefox Thumb (Default State) */
 input[type="range"]::-moz-range-thumb {
     width: 24px;
     height: 16px;
@@ -72,9 +83,8 @@ input[type="range"]:active::-webkit-slider-thumb {
     background-color: rgba(255, 255, 255, 0.25);
     backdrop-filter: blur(2px);
     -webkit-backdrop-filter: blur(2px);
+    box-shadow: 0px 0px 16px 4px rgba(0, 0, 0, 0.10), -1000px 0 0 -12px #30BE30;
     margin-top: -12px;
-    /* Centers 28px thumb on 4px track: (4px - 28px) / 2 */
-    border-image: linear-gradient(90deg, #30BE30 50%, transparent 0) 0 1 / 12px 0 12px 100vw / 0 0 0 100vw;
 }
 
 /* Firefox Active / Sliding State */
