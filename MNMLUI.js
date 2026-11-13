@@ -10,6 +10,7 @@ document.head.appendChild(cssLink);
 
 const componentScripts = [
     '/JS/Navbar.js',
+    '/JS/Slider.js',
 ];
 
 componentScripts.forEach(scriptPath => {
