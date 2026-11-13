@@ -11,7 +11,7 @@
     height: 4px;
     background-color: #d9d9d9;
     border-radius: 2px;
-    margin: 12px 0;
+    margin: 12px 0 20px 0;
 }
 
 .slider-progress {
@@ -21,6 +21,24 @@
     width: var(--progress, 0%);
     background-color: #30BE30;
     border-radius: 2px;
+}
+
+.slider-ticks {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 8px;
+    height: 2px;
+    pointer-events: none;
+}
+
+.slider-tick {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background-color: #808080;
+    border-radius: 1px;
+    transform: translateX(-50%);
 }
 
 input[type="range"] {
