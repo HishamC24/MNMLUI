@@ -6,12 +6,33 @@
     gap: 12px;
 }
 
+.slider-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    /* margin: 12px 0 20px 0; */
+}
+
+.slider-side {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+svg.slider-side {
+    width: 32px;
+    height: 32px;
+}
+
 .slider-wrapper {
     position: relative;
+    flex: 1;
     height: 4px;
     background-color: #d9d9d9;
     border-radius: 2px;
-    margin: 12px 8px 20px 8px;
+    margin: 0 8px;
 }
 
 .slider-progress {

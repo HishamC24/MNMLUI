@@ -26,19 +26,30 @@
     <div class="card">
         <label class="slider">
             <span>Stepped Slider</span>
-            <div class="slider-wrapper">
-                <div class="slider-progress"></div>
-                <div class="slider-ticks"></div>
-                <input type="range" min="0" max="10" value="4">
+            <div class="slider-row">
+                <span class="slider-side">PreText</span>
+                <div class="slider-wrapper">
+                    <div class="slider-progress"></div>
+                    <div class="slider-ticks"></div>
+                    <input type="range" min="0" max="10" value="4">
+                </div>
+                <span class="slider-side">PostText</span>
             </div>
         </label>
         <label class="slider">
-            <span>Continuous Slider</span>
-            <div class="slider-wrapper">
-                <div class="slider-progress"></div>
-                <!-- <div class="slider-ticks"></div> -->
-                <!-- dont bother with ticks on a free-smooth gliding slider -->
-                <input type="range" min="0" max="100" value="65" step="any">
+            <span>Brightness</span>
+            <div class="slider-row">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M8 12a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+                    <path
+                        d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7" />
+                </svg>
+                <div class="slider-wrapper">
+                    <div class="slider-progress"></div>
+                    <input type="range" min="0" max="100" value="65" step="any">
+                </div>
             </div>
         </label>
     </div>
