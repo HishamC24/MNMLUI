@@ -39,7 +39,20 @@ document.querySelectorAll('.slider-wrapper').forEach(wrapper => {
 
     input.addEventListener('input', updateSlider);
 
-    input.addEventListener('pointerdown', () => input.classList.add('is-active'));
-    input.addEventListener('pointerup', () => input.classList.remove('is-active'));
-    input.addEventListener('pointercancel', () => input.classList.remove('is-active'));
+    input.addEventListener('pointerdown', (e) => {
+        input.classList.add('is-active');
+        if (input.setPointerCapture) {
+            input.setPointerCapture(e.pointerId);
+        }
+    });
+
+    const removeActive = (e) => {
+        input.classList.remove('is-active');
+        if (input.hasPointerCapture && input.hasPointerCapture(e.pointerId)) {
+            input.releasePointerCapture(e.pointerId);
+        }
+    };
+
+    input.addEventListener('pointerup', removeActive);
+    input.addEventListener('pointercancel', removeActive);
 });
