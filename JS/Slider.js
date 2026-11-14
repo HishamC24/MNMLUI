@@ -8,7 +8,8 @@ document.querySelectorAll('.slider-wrapper').forEach(wrapper => {
         const max = parseFloat(input.max) || 100;
         const val = parseFloat(input.value);
         const percentage = ((val - min) / (max - min)) * 100;
-        progress.style.setProperty('--progress', `${percentage}%`);
+        
+        progress.style.setProperty('--progress-width', `${percentage}%`);
     };
 
     const generateTicks = () => {
