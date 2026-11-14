@@ -117,7 +117,8 @@ input[type="range"]::-moz-range-thumb {
     transition: all 0.25s ease-in-out;
 }
 
-input[type="range"]:active::-webkit-slider-thumb {
+input[type="range"]:active::-webkit-slider-thumb,
+input[type="range"].is-active::-webkit-slider-thumb {
     transform: scale(calc(40 / 24), calc(28 / 16));
     border-radius: 14px;
     background-color: rgba(255, 255, 255, 0.25);
@@ -126,7 +127,8 @@ input[type="range"]:active::-webkit-slider-thumb {
     box-shadow: 0px 0px 16px 4px rgba(0, 0, 0, 0.10);
 }
 
-input[type="range"]:active::-moz-range-thumb {
+input[type="range"]:active::-moz-range-thumb,
+input[type="range"].is-active::-moz-range-thumb {
     transform: scale(calc(40 / 24), calc(28 / 16));
     border-radius: 14px;
     background-color: rgba(255, 255, 255, 0.25);

@@ -38,4 +38,8 @@ document.querySelectorAll('.slider-wrapper').forEach(wrapper => {
     generateTicks();
 
     input.addEventListener('input', updateSlider);
+
+    input.addEventListener('pointerdown', () => input.classList.add('is-active'));
+    input.addEventListener('pointerup', () => input.classList.remove('is-active'));
+    input.addEventListener('pointercancel', () => input.classList.remove('is-active'));
 });
