@@ -1,5 +1,6 @@
 @import url('./Styles.css');
 
+@import url('./Button.css');
 @import url('./Card.css');
 @import url('./Header.css');
 @import url('./Navbar.css');

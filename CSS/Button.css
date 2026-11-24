@@ -1,0 +1,50 @@
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    border: none;
+}
+
+.button:has(> :not(.removed) ~ :not(.removed)),
+.button:has(> :not(.hidden) ~ :not(.hidden)) {
+    padding: 8px 12px;
+    gap: 12px;
+}
+
+
+nav>.TL {
+    position: fixed;
+    top: 32px;
+    left: 32px;
+}
+
+nav>.TR {
+    position: fixed;
+    top: 32px;
+    right: 32px;
+}
+
+nav>.BR {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+}
+
+nav>.BL {
+    position: fixed;
+    bottom: 32px;
+    left: 32px;
+}
+
+nav>.TL,
+nav>.TR,
+nav>.BL,
+nav>.BR {
+    display: flex;
+    gap: 8px
+}
+
+body:has(nav > .BL, nav > .BR) {
+    margin-bottom: 112px;
+}

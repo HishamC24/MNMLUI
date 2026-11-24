@@ -1,11 +1,5 @@
 body {
-    margin-bottom: 128px;
     transition: margin 0.25s ease-in-out;
-}
-
-nav svg {
-    width: 32px;
-    height: 32px;
 }
 
 nav svg * {
@@ -325,6 +319,14 @@ nav>#large>.tab-bar>svg#nav-toggle {
 
 @media (max-width: 699px) {
 
+    body:has(nav > #small) {
+        margin-bottom: 112px;
+    }
+
+    body:has(nav > #small > .accessory-bar) {
+        margin-bottom: 184px;
+    }
+
     nav>#medium,
     nav>#large {
         display: none !important;
@@ -338,6 +340,10 @@ nav>#large>.tab-bar>svg#nav-toggle {
 
     body:not(:has(header)):has(nav > #large[style*="display: none"]) {
         margin-top: 112px;
+    }
+
+    body:has(header):has(nav > #large[style*="display: none"]) {
+        margin-top: 48px;
     }
 
     body:has(nav > #large:not([style*="display: none"])) {
