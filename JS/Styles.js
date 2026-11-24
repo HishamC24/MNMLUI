@@ -1,10 +1,18 @@
 (() => {
     const BUSY_ALPHA = "0.25";
     const SOLID_ALPHA = "0.10";
-    // Luminance threshold (0–1): very light backgrounds like #FEFEFE (~0.99) sit above this;
-    // slightly darker/contrastier backgrounds like #F2F2F2 (~0.88) sit below it.
     const HIGH_LUMINANCE_THRESHOLD = 0.94;
     const MEDIA_TAGS = new Set(["IMG", "SVG", "VIDEO", "CANVAS", "PICTURE"]);
+
+    const isDarkMode = (el) => {
+        if (el.classList.contains("permDark") || document.body.classList.contains("permDark")) {
+            return true;
+        }
+        if (el.classList.contains("permLight") || document.body.classList.contains("permLight")) {
+            return false;
+        }
+        return Boolean(window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    };
 
     const isVisible = (el) => {
         if (!el || el.classList.contains("removed") || el.classList.contains("transparent")) {
@@ -50,7 +58,6 @@
         };
     };
 
-    // sRGB relative luminance (0 = black, 1 = white)
     const getRelativeLuminance = ({ r, g, b }) => {
         const toLinear = (c) => {
             const s = c / 255;
@@ -79,8 +86,7 @@
         }
 
         if (remainingAlpha > 0.01) {
-            const isDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-            const fallback = isDark ? { r: 0, g: 0, b: 0 } : { r: 242, g: 242, b: 242 }; // #F2F2F2 fallback
+            const fallback = { r: 242, g: 242, b: 242 }; // #F2F2F2 light fallback
             accR += fallback.r * remainingAlpha;
             accG += fallback.g * remainingAlpha;
             accB += fallback.b * remainingAlpha;
@@ -130,6 +136,11 @@
         elements.forEach((el) => {
             if (!isVisible(el)) return;
 
+            if (isDarkMode(el)) {
+                el.style.setProperty("--glassy-shadow-alpha", BUSY_ALPHA);
+                return;
+            }
+
             const rect = el.getBoundingClientRect();
             const points = getSamplePoints(rect);
             const useStrongShadow = points.some(({ x, y }) => isPointBusyOrHighLum(el, x, y));
@@ -150,6 +161,8 @@
     ["scroll", "resize", "load"].forEach((evt) => {
         window.addEventListener(evt, scheduleUpdate, { passive: true });
     });
+
+    window.matchMedia?.("(prefers-color-scheme: dark)")?.addEventListener("change", scheduleUpdate);
 
     document.addEventListener("click", () => {
         setTimeout(scheduleUpdate, 260);

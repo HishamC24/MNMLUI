@@ -159,6 +159,11 @@ body.permDark {
         --glassy-glow-color: rgba(128, 128, 128, 0.25);
 
         background-color: rgba(64, 64, 64, 0.5);
+        box-shadow:
+            var(--glassy-glow-top),
+            var(--glassy-glow-bottom),
+            var(--glassy-highlight-top),
+            var(--glassy-highlight-bottom);
     }
 
     .glassy:active {
