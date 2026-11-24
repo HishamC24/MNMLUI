@@ -9,6 +9,7 @@ cssLink.href = `${BASE_DIR}/CSS/Main.css`;
 document.head.appendChild(cssLink);
 
 const componentScripts = [
+    '/JS/Styles.js',
     '/JS/Navbar.js',
     '/JS/Slider.js',
 ];

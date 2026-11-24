@@ -8,7 +8,7 @@ Import via this one line:
 <script src="https://hishamc24.github.io/MNMLUI/MNMLUI.js"></script>
 ```
 
-If you want just the styling, import that one stylesheet:
+If you want just the styling, import that one stylesheet. No longer reccomended since it does NOT have the dynamically adjusting drop shadow:
 
 ```html
 <link rel="stylesheet" href="https://hishamc24.github.io/MNMLUI/CSS/Styles.css" />
