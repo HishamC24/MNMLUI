@@ -26,51 +26,41 @@
         return rect.width > 0 && rect.height > 0;
     };
 
-    const pointInRect = (x, y, rect, pad = 0) =>
+    const pointInRect = (x, y, rect) =>
         rect.width > 0 &&
         rect.height > 0 &&
-        x >= rect.left - pad &&
-        x <= rect.right + pad &&
-        y >= rect.top - pad &&
-        y <= rect.bottom + pad;
+        x >= rect.left &&
+        x <= rect.right &&
+        y >= rect.top &&
+        y <= rect.bottom;
 
-    const hasCharacterAtPoint = (hit, x, y) => {
+    const hasExactContentAtPoint = (hit, x, y) => {
         if (MEDIA_TAGS.has(hit.tagName) || hit.closest("svg, picture")) {
             return true;
         }
 
-        let textNode = null;
-        let offset = 0;
-
-        if (typeof document.caretPositionFromPoint === "function") {
-            const pos = document.caretPositionFromPoint(x, y);
-            if (pos && pos.offsetNode && pos.offsetNode.nodeType === Node.TEXT_NODE) {
-                textNode = pos.offsetNode;
-                offset = pos.offset;
-            }
-        } else if (typeof document.caretRangeFromPoint === "function") {
-            const range = document.caretRangeFromPoint(x, y);
-            if (range && range.startContainer && range.startContainer.nodeType === Node.TEXT_NODE) {
-                textNode = range.startContainer;
-                offset = range.startOffset;
-            }
-        }
-
-        if (!textNode || !textNode.nodeValue) return false;
-
-        const len = textNode.nodeValue.length;
-        const indices = [offset, offset - 1].filter((i) => i >= 0 && i < len);
+        const walker = document.createTreeWalker(hit, NodeFilter.SHOW_TEXT);
+        const nodeRange = document.createRange();
         const charRange = document.createRange();
+        let node;
 
-        for (const idx of indices) {
-            const ch = textNode.nodeValue[idx];
-            if (!ch || /\s/.test(ch)) continue;
-            charRange.setStart(textNode, idx);
-            charRange.setEnd(textNode, idx + 1);
-            const rects = charRange.getClientRects();
-            for (let i = 0; i < rects.length; i++) {
-                if (pointInRect(x, y, rects[i], 2)) {
-                    return true;
+        while ((node = walker.nextNode())) {
+            const text = node.nodeValue;
+            if (!text || !text.trim()) continue;
+
+            nodeRange.selectNodeContents(node);
+            const nodeRect = nodeRange.getBoundingClientRect();
+            if (!pointInRect(x, y, nodeRect)) continue;
+
+            for (let i = 0; i < text.length; i++) {
+                if (/\s/.test(text[i])) continue;
+                charRange.setStart(node, i);
+                charRange.setEnd(node, i + 1);
+                const rects = charRange.getClientRects();
+                for (let r = 0; r < rects.length; r++) {
+                    if (pointInRect(x, y, rects[r])) {
+                        return true;
+                    }
                 }
             }
         }
@@ -78,15 +68,37 @@
         return false;
     };
 
-    const parseRgba = (str) => {
-        const match = str && str.match(/rgba?\(\s*([\d.]+)[,\s]+([\d.]+)[,\s]+([\d.]+)(?:[,/\s]+([\d.]+))?\s*\)/i);
-        if (!match) return null;
-        return {
-            r: Number(match[1]),
-            g: Number(match[2]),
-            b: Number(match[3]),
-            a: match[4] !== undefined ? Number(match[4]) : 1
-        };
+    const parseColor = (str) => {
+        if (!str || str === "transparent") return null;
+
+        const rgbMatch = str.match(
+            /^rgba?\(\s*([\d.]+)%?[\s,]+([\d.]+)%?[\s,]+([\d.]+)%?(?:[\s,/]+([\d.]+)%?)?\s*\)$/i
+        );
+        if (rgbMatch) {
+            const scale = (v, isPct) => (isPct ? (Number(v) / 100) * 255 : Number(v));
+            const aRaw = rgbMatch[4] !== undefined ? Number(rgbMatch[4]) : 1;
+            const alpha = str.includes("%") && rgbMatch[4]?.endsWith("%") ? aRaw / 100 : aRaw;
+            return {
+                r: scale(rgbMatch[1], rgbMatch[1].endsWith("%")),
+                g: scale(rgbMatch[2], rgbMatch[2].endsWith("%")),
+                b: scale(rgbMatch[3], rgbMatch[3].endsWith("%")),
+                a: alpha
+            };
+        }
+
+        const srgbMatch = str.match(
+            /^color\(\s*srgb\s+([\d.]+)\s+([\d.]+)\s+([\d.]+)(?:\s*\/\s*([\d.]+))?\s*\)$/i
+        );
+        if (srgbMatch) {
+            return {
+                r: Number(srgbMatch[1]) * 255,
+                g: Number(srgbMatch[2]) * 255,
+                b: Number(srgbMatch[3]) * 255,
+                a: srgbMatch[4] !== undefined ? Number(srgbMatch[4]) : 1
+            };
+        }
+
+        return null;
     };
 
     const getRelativeLuminance = ({ r, g, b }) => {
@@ -104,7 +116,7 @@
             if (hit === glassyEl || glassyEl.contains(hit) || hit.closest("nav")) {
                 continue;
             }
-            const rgba = parseRgba(getComputedStyle(hit).backgroundColor);
+            const rgba = parseColor(getComputedStyle(hit).backgroundColor);
             if (rgba && rgba.a > 0) {
                 const weight = remainingAlpha * rgba.a;
                 accR += rgba.r * weight;
@@ -132,7 +144,7 @@
             if (hit === glassyEl || glassyEl.contains(hit) || hit.closest("nav")) {
                 continue;
             }
-            if (hasCharacterAtPoint(hit, x, y)) {
+            if (hasExactContentAtPoint(hit, x, y)) {
                 return true;
             }
         }
@@ -154,15 +166,15 @@
         const cy = rect.top + rect.height / 2;
 
         return [
-            { x: left, y: top },      // top-left
-            { x: cx, y: top },        // top-edge center
-            { x: right, y: top },     // top-right
-            { x: left, y: cy },       // left-edge center
-            { x: cx, y: cy },        // center
-            { x: right, y: cy },      // right-edge center
-            { x: left, y: bottom },   // bottom-left
-            { x: cx, y: bottom },     // bottom-edge center
-            { x: right, y: bottom }   // bottom-right
+            { x: left, y: top },
+            { x: cx, y: top },
+            { x: right, y: top },
+            { x: left, y: cy },
+            { x: cx, y: cy },
+            { x: right, y: cy },
+            { x: left, y: bottom },
+            { x: cx, y: bottom },
+            { x: right, y: bottom }
         ];
     };
 
