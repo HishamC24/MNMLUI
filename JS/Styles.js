@@ -35,6 +35,14 @@
         y <= rect.bottom;
 
     const hasExactContentAtPoint = (hit, x, y) => {
+        if (!hit || hit === document.documentElement || hit === document.body) {
+            return false;
+        }
+
+        if (hit.closest(".removed")) {
+            return false;
+        }
+
         if (MEDIA_TAGS.has(hit.tagName) || hit.closest("svg, picture")) {
             return true;
         }
@@ -47,6 +55,14 @@
         while ((node = walker.nextNode())) {
             const text = node.nodeValue;
             if (!text || !text.trim()) continue;
+
+            const parentEl = node.parentElement;
+            if (!parentEl || parentEl.closest(".removed")) continue;
+
+            const pStyle = getComputedStyle(parentEl);
+            if (pStyle.display === "none" || pStyle.visibility === "hidden" || parseFloat(pStyle.opacity) === 0) {
+                continue;
+            }
 
             nodeRange.selectNodeContents(node);
             const nodeRect = nodeRange.getBoundingClientRect();
