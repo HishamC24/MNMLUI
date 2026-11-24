@@ -320,7 +320,7 @@ nav>#large>.tab-bar>svg#nav-toggle {
 @media (max-width: 699px) {
 
     body:has(nav > #small) {
-        margin-bottom: 112px;
+        margin-bottom: 128px;
     }
 
     body:has(nav > #small > .accessory-bar) {

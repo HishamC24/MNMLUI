@@ -26,24 +26,55 @@
         return rect.width > 0 && rect.height > 0;
     };
 
-    const pointOverlapsRect = (x, y, rect) =>
-        x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
+    const pointInRect = (x, y, rect, pad = 0) =>
+        rect.width > 0 &&
+        rect.height > 0 &&
+        x >= rect.left - pad &&
+        x <= rect.right + pad &&
+        y >= rect.top - pad &&
+        y <= rect.bottom + pad;
 
-    const hasTextAtPoint = (container, x, y) => {
-        const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT);
-        const range = document.createRange();
-        let node;
+    const hasCharacterAtPoint = (hit, x, y) => {
+        if (MEDIA_TAGS.has(hit.tagName) || hit.closest("svg, picture")) {
+            return true;
+        }
 
-        while ((node = walker.nextNode())) {
-            if (!node.nodeValue || !node.nodeValue.trim()) continue;
-            range.selectNodeContents(node);
-            const rects = range.getClientRects();
+        let textNode = null;
+        let offset = 0;
+
+        if (typeof document.caretPositionFromPoint === "function") {
+            const pos = document.caretPositionFromPoint(x, y);
+            if (pos && pos.offsetNode && pos.offsetNode.nodeType === Node.TEXT_NODE) {
+                textNode = pos.offsetNode;
+                offset = pos.offset;
+            }
+        } else if (typeof document.caretRangeFromPoint === "function") {
+            const range = document.caretRangeFromPoint(x, y);
+            if (range && range.startContainer && range.startContainer.nodeType === Node.TEXT_NODE) {
+                textNode = range.startContainer;
+                offset = range.startOffset;
+            }
+        }
+
+        if (!textNode || !textNode.nodeValue) return false;
+
+        const len = textNode.nodeValue.length;
+        const indices = [offset, offset - 1].filter((i) => i >= 0 && i < len);
+        const charRange = document.createRange();
+
+        for (const idx of indices) {
+            const ch = textNode.nodeValue[idx];
+            if (!ch || /\s/.test(ch)) continue;
+            charRange.setStart(textNode, idx);
+            charRange.setEnd(textNode, idx + 1);
+            const rects = charRange.getClientRects();
             for (let i = 0; i < rects.length; i++) {
-                if (pointOverlapsRect(x, y, rects[i])) {
+                if (pointInRect(x, y, rects[i], 2)) {
                     return true;
                 }
             }
         }
+
         return false;
     };
 
@@ -66,8 +97,7 @@
         return 0.2126 * toLinear(r) + 0.7152 * toLinear(g) + 0.0722 * toLinear(b);
     };
 
-    const getEffectiveBgLuminanceAtPoint = (glassyEl, x, y) => {
-        const stack = document.elementsFromPoint(x, y);
+    const getEffectiveBgLuminanceAtPoint = (glassyEl, x, y, stack) => {
         let accR = 0, accG = 0, accB = 0, remainingAlpha = 1;
 
         for (const hit of stack) {
@@ -102,32 +132,38 @@
             if (hit === glassyEl || glassyEl.contains(hit) || hit.closest("nav")) {
                 continue;
             }
-            if (MEDIA_TAGS.has(hit.tagName) || hit.closest("svg, picture")) {
-                return true;
-            }
-            if (hasTextAtPoint(hit, x, y)) {
+            if (hasCharacterAtPoint(hit, x, y)) {
                 return true;
             }
         }
 
-        const lum = getEffectiveBgLuminanceAtPoint(glassyEl, x, y);
+        const lum = getEffectiveBgLuminanceAtPoint(glassyEl, x, y, stack);
         return lum >= HIGH_LUMINANCE_THRESHOLD;
     };
 
-    const getSamplePoints = (rect) => {
-        const cols = [0.2, 0.5, 0.8];
-        const rows = [0.25, 0.5, 0.75];
-        const points = [];
+    // 9 points: 4 corners, 4 edge midpoints, and 1 center
+    const getNinePoints = (rect) => {
+        const insetX = rect.width > 2 ? 1 : 0;
+        const insetY = rect.height > 2 ? 1 : 0;
 
-        for (const rx of cols) {
-            for (const ry of rows) {
-                points.push({
-                    x: rect.left + rect.width * rx,
-                    y: rect.top + rect.height * ry
-                });
-            }
-        }
-        return points;
+        const left = rect.left + insetX;
+        const right = rect.right - insetX;
+        const top = rect.top + insetY;
+        const bottom = rect.bottom - insetY;
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+
+        return [
+            { x: left, y: top },      // top-left
+            { x: cx, y: top },        // top-edge center
+            { x: right, y: top },     // top-right
+            { x: left, y: cy },       // left-edge center
+            { x: cx, y: cy },        // center
+            { x: right, y: cy },      // right-edge center
+            { x: left, y: bottom },   // bottom-left
+            { x: cx, y: bottom },     // bottom-edge center
+            { x: right, y: bottom }   // bottom-right
+        ];
     };
 
     const updateGlassyShadows = () => {
@@ -142,7 +178,7 @@
             }
 
             const rect = el.getBoundingClientRect();
-            const points = getSamplePoints(rect);
+            const points = getNinePoints(rect);
             const useStrongShadow = points.some(({ x, y }) => isPointBusyOrHighLum(el, x, y));
 
             el.style.setProperty("--glassy-shadow-alpha", useStrongShadow ? BUSY_ALPHA : SOLID_ALPHA);
@@ -162,10 +198,22 @@
         window.addEventListener(evt, scheduleUpdate, { passive: true });
     });
 
+    window.visualViewport?.addEventListener("resize", scheduleUpdate, { passive: true });
+    window.visualViewport?.addEventListener("scroll", scheduleUpdate, { passive: true });
     window.matchMedia?.("(prefers-color-scheme: dark)")?.addEventListener("change", scheduleUpdate);
 
+    if (typeof ResizeObserver !== "undefined") {
+        const resizeObserver = new ResizeObserver(scheduleUpdate);
+        resizeObserver.observe(document.documentElement);
+        document.querySelectorAll("nav, .glassy").forEach((el) => resizeObserver.observe(el));
+    }
+
     document.addEventListener("click", () => {
-        setTimeout(scheduleUpdate, 260);
+        requestAnimationFrame(() => requestAnimationFrame(scheduleUpdate));
+    });
+
+    ["transitionend", "animationend"].forEach((evt) => {
+        document.addEventListener(evt, scheduleUpdate, { passive: true });
     });
 
     const observer = new MutationObserver(scheduleUpdate);
