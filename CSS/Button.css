@@ -44,6 +44,8 @@ nav>.BR {
     gap: 8px
 }
 
-body:has(nav > .BL, nav > .BR) {
-    margin-bottom: 112px;
+body:has(
+  :is(nav > .BL, nav > .BR):not(.removed):not(.removed *):not(:is(.removed, .removed *) *)
+) {
+  margin-bottom: 112px;
 }
