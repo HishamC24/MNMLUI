@@ -6,8 +6,7 @@
     border: none;
 }
 
-.button:has(> :not(.removed) ~ :not(.removed)),
-.button:has(> :not(.hidden) ~ :not(.hidden)) {
+.button:has(> :not(.hidden, .removed) ~ :not(.hidden, .removed)) {
     padding: 8px 12px;
     gap: 12px;
 }
