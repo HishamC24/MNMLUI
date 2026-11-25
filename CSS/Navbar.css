@@ -319,11 +319,11 @@ nav>#large>.tab-bar>svg#nav-toggle {
 
 @media (max-width: 699px) {
 
-    body:has(nav > #small) {
+    body:has(nav:not(.removed) > #small):not(:has(.removed nav > #small)) {
         margin-bottom: 128px;
     }
 
-    body:has(nav > #small > .accessory-bar) {
+    body:has(nav:not(.removed) > #small > .accessory-bar):not(:has(.removed nav > #small > .accessory-bar)) {
         margin-bottom: 184px;
     }
 
