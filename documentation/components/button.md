@@ -4,7 +4,11 @@
 
 For most glassy components, a button component would be used. Either to hold one icon depicting what action clicking it will do, or multiple icons to group related actions together in a unified space that can easily be found. Usually, accompanied by placing button(s) in the top left, top right, bottom left, or bottom right corners of the viewport.
 
+### Tinting
+
 For more important buttons, you can apply a tint with the `tinted` class, allowing prominence for a specific action.
+
+### Position
 
 To have a button class tied to a corner, use `.TL`, `.TR`, `.BL`, or `.BR` to a div. Padding below will automatically be accounted for.
 

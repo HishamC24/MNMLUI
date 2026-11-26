@@ -10,6 +10,8 @@ When making a tab bar, you can have from two to four items, and five if you do n
 
 <figure><picture><source srcset="../.gitbook/assets/TabBar Buttonless Dark.png" media="(prefers-color-scheme: dark)"><img src="../.gitbook/assets/TabBar Buttonless Light.png" alt=""></picture><figcaption></figcaption></figure>
 
+### Accessory Bar
+
 There is also an accessory bar for extra content; in this example, replicating iOS26's Apple Music app, it is used for song playback controls and details.
 
 <figure><picture><source srcset="../.gitbook/assets/TabBar Accessory Dark.png" media="(prefers-color-scheme: dark)"><img src="../.gitbook/assets/TabBar Accessory Light.png" alt=""></picture><figcaption></figcaption></figure>
