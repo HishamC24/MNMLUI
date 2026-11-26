@@ -6,6 +6,7 @@
 ## Components
 
 * [Styling](components/styling.md)
+* [Icons](components/icons.md)
 * [Header](components/header.md)
 * [Section](components/section.md)
 * [Card](components/card.md)
