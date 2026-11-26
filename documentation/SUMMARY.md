@@ -2,6 +2,7 @@
 
 * [Home](README.md)
 * [About](about.md)
+* [Notation](notation.md)
 
 ## Components
 
