@@ -6,17 +6,17 @@ description: How did we get here?
 
 Apple introduced Liquid Glass in iOS26, and subtly also changed the design of all buttons and interactable items, having them separated from the edges of the screen, floating above the main content below the page. All buttons now have their own dedicated spot.
 
-<figure><img src=".gitbook/assets/BeforeAfter iOS26.jpg" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/BeforeAfter iOS26.jpg" alt=""><figcaption><p>Source: Apple</p></figcaption></figure>
 
 Samsung later on introduced floating components and tab bar as well, close in design to iOS26.
 
 OneUI8:&#x20;
 
-<figure><img src=".gitbook/assets/OneUI8 Tab Bar.png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/OneUI8 Tab Bar.png" alt=""><figcaption><p>Source: My ZFold 8, Samsung</p></figcaption></figure>
 
 iOS26:&#x20;
 
-<figure><img src=".gitbook/assets/iOS26 Tab Bar.png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/iOS26 Tab Bar.png" alt=""><figcaption><p>Source: Apple</p></figcaption></figure>
 
 And then a thought appeared: "What if I make my own rendition of this floating tab bar design for my own work?" This started the foundation of MNMLUI.
 
