@@ -6,4 +6,6 @@ For most glassy components, a button component would be used. Either to hold one
 
 For more important buttons, you can apply a tint with the `tinted` class, allowing prominence for a specific action.
 
+To have a button class tied to a corner, use `.TL`, `.TR`, `.BL`, or `.BR` to a div. Padding below will automatically be accounted for.
+
 <figure><img src="../.gitbook/assets/Button iOS26.png" alt=""><figcaption><p>Source: Apple</p></figcaption></figure>
