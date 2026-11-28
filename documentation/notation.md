@@ -24,4 +24,4 @@ But, to clean up classes and ID's, they will be represented with `.` and `#` res
 </div>
 ```
 
-You can always go to the [/HTML/](../HTML) in the Github Repository to find examples of all these items.
+You can always go to the [/HTML/](../HTML) in the Github Repository to find examples of all these items and components.
