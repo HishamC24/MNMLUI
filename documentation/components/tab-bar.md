@@ -124,28 +124,6 @@ Animation here is recommended to be medium, since it's larger in size than the s
 </body>
 ```
 
-### Large Nav Toggle
-
-Animation here is recommended to be medium, since it's larger in size than the small nav. If you want to let the user be able to convert the medium-sized nav to a larger one, you can add a nav toggle button. Tapping or clicking this will convert the navbar into the side, larger tab bar.
-
-<figure><picture><source srcset="../.gitbook/assets/TabBar Actionless Dark.png" media="(prefers-color-scheme: dark)"><img src="../.gitbook/assets/TabBar Actionless Light.png" alt=""></picture><figcaption></figcaption></figure>
-
-<pre class="language-vue-html"><code class="lang-vue-html">&#x3C;body>
-    &#x3C;nav>
-        &#x3C;div#medium>
-            &#x3C;div.tab-bar.glassy.sc-m>
-<strong>                &#x3C;svg#nav-toggle>...&#x3C;/svg>
-</strong><strong>                
-</strong>                &#x3C;div.tab-item#selected>...&#x3C;/div>
-                &#x3C;div.tab-item>...&#x3C;/div>
-                &#x3C;div.tab-item>...&#x3C;/div>
-                &#x3C;div.tab-item>...&#x3C;/div>
-            &#x3C;/div>
-        &#x3C;/div>
-    &#x3C;nav>
-&#x3C;/body>
-</code></pre>
-
 ### Action Button
 
 The action button here is recommended to be the same as the one in the small nav version, to keep the consistency between all navbars.
@@ -163,6 +141,28 @@ The action button here is recommended to be the same as the one in the small nav
                 
 <strong>                &#x3C;svg.action-btn>...&#x3C;/svg>
 </strong>            &#x3C;/div>
+        &#x3C;/div>
+    &#x3C;nav>
+&#x3C;/body>
+</code></pre>
+
+### Large Nav Toggle
+
+Animation here is recommended to be medium, since it's larger in size than the small nav. If you want to let the user be able to convert the medium-sized nav to a larger one, you can add a nav toggle button. Tapping or clicking this will convert the navbar into the side, larger tab bar.
+
+<figure><picture><source srcset="../.gitbook/assets/TabBar Actionless Dark.png" media="(prefers-color-scheme: dark)"><img src="../.gitbook/assets/TabBar Actionless Light.png" alt=""></picture><figcaption></figcaption></figure>
+
+<pre class="language-vue-html"><code class="lang-vue-html">&#x3C;body>
+    &#x3C;nav>
+        &#x3C;div#medium>
+            &#x3C;div.tab-bar.glassy.sc-m>
+<strong>                &#x3C;svg#nav-toggle>...&#x3C;/svg>
+</strong>                
+                &#x3C;div.tab-item#selected>...&#x3C;/div>
+                &#x3C;div.tab-item>...&#x3C;/div>
+                &#x3C;div.tab-item>...&#x3C;/div>
+                &#x3C;div.tab-item>...&#x3C;/div>
+            &#x3C;/div>
         &#x3C;/div>
     &#x3C;nav>
 &#x3C;/body>

@@ -1,10 +1,12 @@
 ---
-description: A CDN That allows any website to use the Minimal UI software ecosystem.
+description: >-
+  MNMLUI is a A CDN That allows any website to use the Minimal UI software
+  ecosystem.
 ---
 
 # Home
 
-MNMLUI is a unified design language that is meant to bring together the best parts of both iOS(26+) and OneUI(8+).
+Minimal UI is a unified design language that is meant to bring together the best parts of both iOS(26+) and OneUI(8+).
 
 Import via this one line:
 
